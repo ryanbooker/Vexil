@@ -11,12 +11,12 @@
 //
 //===----------------------------------------------------------------------===//
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(visionOS)
 
 import SwiftUI
 import Vexil
 
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 struct FlagDetailView<Value, RootGroup>: View where Value: FlagValue, RootGroup: FlagContainer {
 
     // MARK: - Properties
@@ -39,7 +39,7 @@ struct FlagDetailView<Value, RootGroup>: View where Value: FlagValue, RootGroup:
 
     // MARK: - View Body
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 
     var body: some View {
         self.content
@@ -68,17 +68,21 @@ struct FlagDetailView<Value, RootGroup>: View where Value: FlagValue, RootGroup:
         Form {
             FlagDetailSection(header: Text("Flag Details")) {
                 self.flagKeyView
+                    #if !os(visionOS)
                     .contextMenu {
                         CopyButton(action: self.flag.info.key.copyToPasteboard)
                     }
+                    #endif
 
                 VStack(alignment: .leading) {
                     Text("Description:").font(.headline)
                     Text(self.flag.info.description)
                 }
+                #if !os(visionOS)
                 .contextMenu {
                     CopyButton(action: self.flag.info.description.copyToPasteboard)
                 }
+                #endif
             }
 
             if self.manager.source != nil {

@@ -11,7 +11,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(visionOS)
 
 import SwiftUI
 import Vexil
@@ -20,7 +20,7 @@ import Vexil
 
 /// A SwiftUI View that allows you to easily edit the flag
 /// structure in a provided FlagValueSource.
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 public struct Vexillographer<RootGroup>: View where RootGroup: FlagContainer {
 
     // MARK: - Properties
@@ -61,7 +61,7 @@ public struct Vexillographer<RootGroup>: View where RootGroup: FlagContainer {
 
 /// A SwiftUI View that allows you to easily edit the flag
 /// structure in a provided FlagValueSource.
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 public struct Vexillographer<RootGroup>: View where RootGroup: FlagContainer {
 
     // MARK: - Properties

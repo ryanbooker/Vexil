@@ -11,7 +11,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(visionOS)
 
 import SwiftUI
 import Vexil
@@ -20,7 +20,7 @@ import Vexil
 //
 // Case Iterable flags are those those whose flag value conforms to `CaseIterable`
 
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 struct CaseIterableFlagControl<Value>: View where Value: FlagValue, Value: CaseIterable, Value: Hashable, Value.AllCases: RandomAccessCollection {
 
     // MARK: - Properties
@@ -44,7 +44,7 @@ struct CaseIterableFlagControl<Value>: View where Value: FlagValue, Value: CaseI
         }
     }
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 
     var body: some View {
         HStack {
@@ -150,12 +150,12 @@ struct CaseIterableFlagControl<Value>: View where Value: FlagValue, Value: CaseI
 
 // MARK: - Creating CaseIterableFlagControls
 
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 protocol CaseIterableEditableFlag {
     func control<RootGroup>(label: String, manager: FlagValueManager<RootGroup>, showDetail: Binding<Bool>) -> AnyView where RootGroup: FlagContainer
 }
 
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 extension UnfurledFlag: CaseIterableEditableFlag
     where Value: FlagValue, Value: CaseIterable, Value.AllCases: RandomAccessCollection,
     Value: RawRepresentable, Value.RawValue: FlagValue, Value: Hashable

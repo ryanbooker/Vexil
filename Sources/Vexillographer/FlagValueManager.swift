@@ -11,14 +11,14 @@
 //
 //===----------------------------------------------------------------------===//
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(visionOS)
 
 import Combine
 import Foundation
 import SwiftUI
 import Vexil
 
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 class FlagValueManager<RootGroup>: ObservableObject where RootGroup: FlagContainer {
 
     // MARK: - Properties

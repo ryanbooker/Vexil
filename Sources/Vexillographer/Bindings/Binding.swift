@@ -11,13 +11,13 @@
 //
 //===----------------------------------------------------------------------===//
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(visionOS)
 
 import SwiftUI
 import Vexil
 
 extension Binding {
-    @available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+    @available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
     init<Transformer, RootGroup, FValue>(key: String, manager: FlagValueManager<RootGroup>, defaultValue: FValue, transformer: Transformer.Type) where RootGroup: FlagContainer, Transformer: BoxedFlagValueTransformer, FValue: FlagValue, Transformer.EditingValue == Value, FValue.BoxedValueType == Transformer.OriginalValue {
         self.init(
             get: {
@@ -36,7 +36,7 @@ extension Binding {
         )
     }
 
-    @available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+    @available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
     init<Transformer, RootGroup>(key: String, manager: FlagValueManager<RootGroup>, defaultValue: Transformer.OriginalValue, transformer: Transformer.Type) where RootGroup: FlagContainer, Transformer: FlagValueTransformer, Transformer.EditingValue == Value {
         self.init(
             get: {

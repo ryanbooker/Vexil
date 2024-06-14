@@ -11,7 +11,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(visionOS)
 
 import Foundation
 import Vexil
@@ -21,12 +21,12 @@ import Vexil
 /// Basically this is used to provide the Flag and FlagGroups with a way to create a type-erased `UnfurledFlagItem`
 /// that describes themelves.
 ///
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 protocol Unfurlable {
     func unfurl<RootGroup>(label: String, manager: FlagValueManager<RootGroup>) -> UnfurledFlagItem? where RootGroup: FlagContainer
 }
 
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 extension Flag: Unfurlable where Value: FlagValue {
 
     /// Creates an `UnfurledFlag` from the receiver and returns it as a type-erased `UnfurledFlagItem`
@@ -40,7 +40,7 @@ extension Flag: Unfurlable where Value: FlagValue {
     }
 }
 
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 extension FlagGroup: Unfurlable {
 
     /// Creates an `UnfurledFlagGroup` from the receiver and returns it as a type-erased `UnfurledFlagItem`

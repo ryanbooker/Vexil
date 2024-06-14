@@ -11,12 +11,12 @@
 //
 //===----------------------------------------------------------------------===//
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(macOS) || os(visionOS)
 
 import SwiftUI
 import Vexil
 
-@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, *)
+@available(OSX 11.0, iOS 13.0, watchOS 7.0, tvOS 13.0, visionOS 1.0, *)
 struct UnfurledFlagGroupView<Group, Root>: View where Group: FlagContainer, Root: FlagContainer {
 
     // MARK: - Properties
@@ -91,9 +91,11 @@ struct UnfurledFlagGroupView<Group, Root>: View where Group: FlagContainer, Root
             Text("Description").font(.headline)
             Text(self.group.info.description)
         }
+        #if !os(visionOS)
         .contextMenu {
             CopyButton(action: self.group.info.description.copyToPasteboard)
         }
+        #endif
     }
 
     var flags: some View {
