@@ -23,6 +23,7 @@ extension FlagContainerMacro: MemberMacro {
     public static func expansion(
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclGroupSyntax,
+        conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         // If the declaration doesn't have any scopes attached we might be inheriting scopes from a public extension
