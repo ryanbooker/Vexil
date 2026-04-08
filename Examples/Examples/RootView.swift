@@ -34,7 +34,7 @@ struct RootView: View {
         }
         .flagPole(
             Dependencies.current.flags,
-            editableSource: Dependencies.current.flags._sources.first
+            editableSource: Dependencies.current.flags._sources.first,
         )
         .flagControlStyle(.doubleAndBoolean)
 

@@ -41,7 +41,7 @@ struct FlagTextField<Value: FlagValue>: View {
         formatted: WritableKeyPath<Value, String>,
         placeholder: String = "",
         format: @escaping (String) -> String = { $0 },
-        editingFormat: @escaping (String) -> String = { $0 }
+        editingFormat: @escaping (String) -> String = { $0 },
     ) {
         self.name = configuration.name
         _value = configuration.$value
@@ -89,7 +89,7 @@ struct FlagTextField<Value: FlagValue>: View {
     var text: Binding<String> {
         Binding(
             get: { cachedText ?? value[keyPath: formatted] },
-            set: { cachedText = $0 }
+            set: { cachedText = $0 },
         )
     }
 

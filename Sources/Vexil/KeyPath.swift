@@ -37,7 +37,7 @@ public struct FlagKeyPath: Hashable, Sendable {
         _ keyPath: [Key],
         separator: String = ".",
         strategy: VexilConfiguration.CodingKeyStrategy = .default,
-        key: String
+        key: String,
     ) {
         self.keyPath = keyPath
         self.separator = separator
@@ -48,7 +48,7 @@ public struct FlagKeyPath: Hashable, Sendable {
     public init(
         _ keyPath: [Key],
         separator: String = ".",
-        strategy: VexilConfiguration.CodingKeyStrategy = .default
+        strategy: VexilConfiguration.CodingKeyStrategy = .default,
     ) {
         self.keyPath = keyPath
         self.separator = separator
@@ -89,7 +89,7 @@ public struct FlagKeyPath: Hashable, Sendable {
                 case .root:
                     self.key     // mostly a noop
                 }
-            }()
+            }(),
         )
     }
 
@@ -97,7 +97,7 @@ public struct FlagKeyPath: Hashable, Sendable {
         FlagKeyPath(
             [ .root ],
             separator: separator,
-            strategy: strategy
+            strategy: strategy,
         )
     }
 

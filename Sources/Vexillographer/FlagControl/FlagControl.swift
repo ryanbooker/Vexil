@@ -30,7 +30,7 @@ public struct FlagControl<Value: FlagValue, Content: View>: View {
 
     public init(
         _ wigwag: FlagWigwag<Value>,
-        @ViewBuilder content: @escaping (FlagControlConfiguration<Value>) -> Content
+        @ViewBuilder content: @escaping (FlagControlConfiguration<Value>) -> Content,
     ) {
         self.wigwag = wigwag
         self.content = content
@@ -47,8 +47,8 @@ public struct FlagControl<Value: FlagValue, Content: View>: View {
                 hasValue: editableValue != nil,
                 defaultValue: wigwag.defaultValue,
                 value: Binding(get: getValue, set: setValue),
-                resetValue: resetValue
-            )
+                resetValue: resetValue,
+            ),
         )
         .task {
             for await _ in wigwag.changes {

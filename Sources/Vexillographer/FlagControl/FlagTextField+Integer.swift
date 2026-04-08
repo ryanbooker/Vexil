@@ -21,7 +21,7 @@ extension FlagTextField where Value.BoxedValueType: BinaryInteger {
         self = Self(
             configuration: configuration,
             formatted: \.asString,
-            editingFormat: { $0.filter(\.isNumber) }
+            editingFormat: { $0.filter(\.isNumber) },
         )
 #if os(iOS) || os(tvOS)
         .keyboardType(.numberPad)
@@ -59,7 +59,7 @@ extension FlagTextField {
         self = Self(
             configuration: configuration,
             formatted: \.asStringOrEmpty,
-            editingFormat: { $0.filter(\.isNumber) }
+            editingFormat: { $0.filter(\.isNumber) },
         )
 #if os(iOS) || os(tvOS)
         .keyboardType(.numberPad)
@@ -90,7 +90,7 @@ extension FlagControlConfiguration: OptionalIntegerFlagTextFieldRepresentable wh
         FlagTextField(
             configuration: self,
             formatted: \.asStringOrEmpty,
-            editingFormat: { $0.filter(\.isNumber) }
+            editingFormat: { $0.filter(\.isNumber) },
         )
 #if os(iOS) || os(tvOS)
         .keyboardType(.numberPad)

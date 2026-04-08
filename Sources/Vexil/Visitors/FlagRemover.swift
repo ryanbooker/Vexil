@@ -24,7 +24,7 @@ final class FlagRemover: FlagVisitor {
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
-        wigwag: () -> FlagWigwag<Value>
+        wigwag: () -> FlagWigwag<Value>,
     ) where Value: FlagValue {
         guard caughtError == nil else {
             return

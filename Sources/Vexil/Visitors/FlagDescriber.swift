@@ -19,7 +19,7 @@ final class FlagDescriber: FlagVisitor {
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
-        wigwag: () -> FlagWigwag<Value>
+        wigwag: () -> FlagWigwag<Value>,
     ) where Value: FlagValue {
         let value = value()
         let description = (value as? CustomDebugStringConvertible)?.debugDescription

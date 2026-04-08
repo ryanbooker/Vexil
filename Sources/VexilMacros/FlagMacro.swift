@@ -149,7 +149,7 @@ extension FlagMacro: AccessorMacro {
     public static func expansion(
         of node: AttributeSyntax,
         providingAccessorsOf declaration: some DeclSyntaxProtocol,
-        in context: some MacroExpansionContext
+        in context: some MacroExpansionContext,
     ) throws -> [AccessorDeclSyntax] {
         let macro = try FlagMacro(node: node, declaration: declaration, context: context)
         return [
@@ -171,7 +171,7 @@ extension FlagMacro: PeerMacro {
     public static func expansion(
         of node: AttributeSyntax,
         providingPeersOf declaration: some DeclSyntaxProtocol,
-        in context: some MacroExpansionContext
+        in context: some MacroExpansionContext,
     ) throws -> [DeclSyntax] {
         do {
             let macro = try FlagMacro(node: node, declaration: declaration, context: context)

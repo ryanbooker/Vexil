@@ -38,7 +38,7 @@ public struct FlagControlConfiguration<Value: FlagValue> {
         hasValue: Bool,
         defaultValue: Value,
         value: Binding<Value>,
-        resetValue: @escaping () -> Void
+        resetValue: @escaping () -> Void,
     ) {
         self.seed = seed
         self.name = name

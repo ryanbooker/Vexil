@@ -84,9 +84,9 @@ extension UserDefaults: NonSendableFlagValueSource {
     public typealias ChangeStream = AsyncMapSequence<
         AsyncChain2Sequence<
             AsyncFilterSequence<NotificationCenter.Notifications>,
-            NotificationCenter.Notifications
+            NotificationCenter.Notifications,
         >,
-        FlagChange
+        FlagChange,
     >
 
     public func flagValueChanges(keyPathMapper: @Sendable @escaping (String) -> FlagKeyPath) -> ChangeStream {
@@ -97,7 +97,7 @@ extension UserDefaults: NonSendableFlagValueSource {
                 .filter { $0.object.isIdentical(to: this) },
 
             // We use the raw value here because the class property is painfully @MainActor
-            NotificationCenter.default.notifications(named: .init("NSApplicationDidBecomeActiveNotification"))
+            NotificationCenter.default.notifications(named: .init("NSApplicationDidBecomeActiveNotification")),
         )
         .map { _ in
             FlagChange.all
@@ -109,9 +109,9 @@ extension UserDefaults: NonSendableFlagValueSource {
     public typealias ChangeStream = AsyncMapSequence<
         AsyncChain2Sequence<
             AsyncFilterSequence<NotificationCenter.Notifications>,
-            NotificationCenter.Notifications
+            NotificationCenter.Notifications,
         >,
-        FlagChange
+        FlagChange,
     >
 
     public func flagValueChanges(keyPathMapper: @escaping (String) -> FlagKeyPath) -> ChangeStream {
@@ -122,7 +122,7 @@ extension UserDefaults: NonSendableFlagValueSource {
                 .filter { $0.object.isIdentical(to: this) },
 
             // We use the raw value here because the class property is painfully @MainActor
-            NotificationCenter.default.notifications(named: .init("UIApplicationDidBecomeActiveNotification"))
+            NotificationCenter.default.notifications(named: .init("UIApplicationDidBecomeActiveNotification")),
         )
         .map { _ in
             FlagChange.all

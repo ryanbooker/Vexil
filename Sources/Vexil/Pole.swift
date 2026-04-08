@@ -188,7 +188,7 @@ public final class FlagPole<RootGroup>: Sendable where RootGroup: FlagContainer 
                 self?.snapshot(including: change)
             }
             .prefix(while: { $0 != nil })               // close the stream when we get nil back
-            .compactMap { $0 }
+            .compactMap(\.self)
 
         return chain([ snapshot() ].async, snapshotStream)
     }
@@ -289,7 +289,7 @@ public final class FlagPole<RootGroup>: Sendable where RootGroup: FlagContainer 
             flagPole: self,
             copyingFlagValuesFrom: source.flatMap(Snapshot.Source.source) ?? .pole,
             change: change,
-            displayName: displayName
+            displayName: displayName,
         )
     }
 
@@ -444,7 +444,7 @@ private final class DebugDescriptionVisitor: FlagVisitor {
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
-        wigwag: () -> FlagWigwag<Value>
+        wigwag: () -> FlagWigwag<Value>,
     ) where Value: FlagValue {
         guard let value = value() else {
             valueDescriptions.append("\(keyPath.key)=nil")

@@ -1,4 +1,4 @@
-// swift-tools-version:6.1
+// swift-tools-version:6.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import CompilerPluginSupport
@@ -33,13 +33,13 @@ let package = Package(
             dependencies: [
                 .target(name: "VexilMacros"),
                 .product(name: "AsyncAlgorithms", package: "swift-async-algorithms"),
-            ]
+            ],
         ),
         .testTarget(
             name: "VexilTests",
             dependencies: [
                 .target(name: "Vexil"),
-            ]
+            ],
         ),
 
         // Macros
@@ -51,7 +51,7 @@ let package = Package(
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-            ]
+            ],
         ),
 
 
@@ -59,7 +59,7 @@ let package = Package(
 
     swiftLanguageModes: [
         .v6,
-    ]
+    ],
 
 )
 
@@ -70,7 +70,7 @@ let package = Package(
 // Vexillographer is not supported on Linux
 
 package.products.append(
-    .library(name: "Vexillographer", targets: [ "Vexillographer" ])
+    .library(name: "Vexillographer", targets: [ "Vexillographer" ]),
 )
 
 package.targets.append(
@@ -78,8 +78,8 @@ package.targets.append(
         name: "Vexillographer",
         dependencies: [
             .target(name: "Vexil"),
-        ]
-    )
+        ],
+    ),
 )
 
 // MARK: - Macro Testing
@@ -91,8 +91,8 @@ package.targets.append(
         dependencies: [
             .target(name: "VexilMacros"),
             .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
-        ]
-    )
+        ],
+    ),
 )
 
 #endif

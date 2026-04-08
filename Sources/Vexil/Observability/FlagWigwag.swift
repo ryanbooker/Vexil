@@ -67,7 +67,7 @@ public struct FlagWigwag<Output>: Sendable where Output: FlagValue {
         defaultValue: Output,
         description: String?,
         displayOption: FlagDisplayOption,
-        lookup: any FlagLookup
+        lookup: any FlagLookup,
     ) {
         self.keyPath = keyPath
         self.name = name
@@ -99,7 +99,7 @@ extension FlagWigwag: AsyncSequence {
     private func makeAsyncSequence() -> Sequence {
         chain(
             [ getOutput() ].async,
-            changes.map { _ in getOutput() }
+            changes.map { _ in getOutput() },
         )
     }
 

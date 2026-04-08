@@ -160,7 +160,7 @@ struct FlagValueBoxingTests {
     func dictionaryFlagValue() {
         #expect(
             [ "one": 123, "two": 456, "three": 789 ].boxedFlagValue
-                == .dictionary([ "one": .integer(123), "two": .integer(456), "three": .integer(789) ])
+                == .dictionary([ "one": .integer(123), "two": .integer(456), "three": .integer(789) ]),
         )
     }
 

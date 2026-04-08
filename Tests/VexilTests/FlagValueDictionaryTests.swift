@@ -59,28 +59,28 @@ struct FlagValueDictionaryTests {
             id: identifier1,
             storage: [
                 "top-level-flag": .bool(true),
-            ]
+            ],
         )
 
         let same = FlagValueDictionary(
             id: identifier1,
             storage: [
                 "top-level-flag": .bool(true),
-            ]
+            ],
         )
 
         let differentContent = FlagValueDictionary(
             id: identifier1,
             storage: [
                 "top-level-flag": .bool(false),
-            ]
+            ],
         )
 
         let differentIdentifier = FlagValueDictionary(
             id: UUID().uuidString,
             storage: [
                 "top-level-flag": .bool(true),
-            ]
+            ],
         )
 
         let originalValues = original.allValues

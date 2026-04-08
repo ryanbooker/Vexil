@@ -16,7 +16,7 @@ import Vexil
 struct Dependencies {
     var flags = FlagPole(
         hoist: FeatureFlags.self,
-        sources: FlagPole<FeatureFlags>.defaultSources + [RemoteFlags.values]
+        sources: FlagPole<FeatureFlags>.defaultSources + [RemoteFlags.values],
     )
 
     @TaskLocal

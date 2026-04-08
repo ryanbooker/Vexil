@@ -62,7 +62,7 @@ final class FlagContainerMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagContainer": FlagContainerMacro.self,
-            ]
+            ],
         )
     }
 
@@ -108,7 +108,7 @@ final class FlagContainerMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagContainer": FlagContainerMacro.self,
-            ]
+            ],
         )
     }
 
@@ -154,7 +154,7 @@ final class FlagContainerMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagContainer": FlagContainerMacro.self,
-            ]
+            ],
         )
     }
 
@@ -253,7 +253,7 @@ final class FlagContainerMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagContainer": FlagContainerMacro.self,
-            ]
+            ],
         )
     }
 

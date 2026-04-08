@@ -91,7 +91,7 @@ extension Snapshot.Builder: FlagVisitor {
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
-        wigwag: () -> FlagWigwag<Value>
+        wigwag: () -> FlagWigwag<Value>,
     ) where Value: FlagValue {
         let key = keyPath.key
         guard keys == nil || keys?.contains(key) == true, let value = value() else {

@@ -32,7 +32,7 @@ struct Mutex<Value: ~Copyable>: ~Copyable, Sendable {
     }
 
     borrowing func withLock<Result: ~Copyable>(
-        _ body: (inout sending Value) throws -> sending Result
+        _ body: (inout sending Value) throws -> sending Result,
     ) rethrows -> sending Result {
         try platformLock.withLock(body)
     }
@@ -100,7 +100,7 @@ struct PlatformLock<Value: ~Copyable> {
     private static func withPlatformLock<R: ~Copyable, E: Error>(
         _ lockPointer: UnsafeMutablePointer<ActualPlatformLock>,
         _ valuePointer: UnsafeMutablePointer<Disconnected<Value>>,
-        _ body: (inout sending Value) throws(E) -> sending R
+        _ body: (inout sending Value) throws(E) -> sending R,
     ) throws(E) -> sending R {
         os_unfair_lock_lock(lockPointer)
         defer {
@@ -135,7 +135,7 @@ struct PlatformLock<Value: ~Copyable> {
     private static func withPlatformLock<R: ~Copyable, E: Error>(
         _ lockPointer: UnsafeMutablePointer<ActualPlatformLock>,
         _ valuePointer: UnsafeMutablePointer<Disconnected<Value>>,
-        _ body: (inout sending Value) throws(E) -> sending R
+        _ body: (inout sending Value) throws(E) -> sending R,
     ) throws(E) -> sending R {
         let error = pthread_mutex_lock(lockPointer)
         // pthread_mutex_lock can only fail with EDEADLK, which the os_unfair_lock
@@ -192,7 +192,7 @@ struct PlatformLock<Value: ~Copyable> {
     }
 
     func withLock<R: ~Copyable, E: Error>(
-        _ body: (inout sending Value) throws(E) -> sending R
+        _ body: (inout sending Value) throws(E) -> sending R,
     ) throws(E) -> sending R {
         // `withUnsafeMutablePointers` doesn't handle `sending` result types, so we
         // transfer the result inside a `Disconnected` to appease the compiler.
@@ -243,7 +243,7 @@ private struct Disconnected<Value: ~Copyable>: ~Copyable, @unchecked Sendable {
 #endif
 
     mutating func withValue<R: ~Copyable, E: Error>(
-        _ work: (inout sending Value) throws(E) -> sending R
+        _ work: (inout sending Value) throws(E) -> sending R,
     ) throws(E) -> sending R {
         try work(&value)
     }

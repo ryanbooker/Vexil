@@ -21,7 +21,7 @@ extension FlagTextField where Value.BoxedValueType: BinaryFloatingPoint {
         self = Self(
             configuration: configuration,
             formatted: \.asString,
-            editingFormat: { $0 }
+            editingFormat: { $0 },
         )
 #if os(iOS) || os(tvOS)
         .keyboardType(.decimalPad)
@@ -59,7 +59,7 @@ extension FlagTextField {
         self = Self(
             configuration: configuration,
             formatted: \.asStringOrEmpty,
-            editingFormat: { $0 }
+            editingFormat: { $0 },
         )
 #if os(iOS) || os(tvOS)
         .keyboardType(.decimalPad)
@@ -91,7 +91,7 @@ extension FlagControlConfiguration: OptionalFloatingPointFlagTextFieldRepresenta
         FlagTextField(
             configuration: self,
             formatted: \.asStringOrEmpty,
-            editingFormat: { $0 }
+            editingFormat: { $0 },
         )
 #if os(iOS) || os(tvOS)
         .keyboardType(.decimalPad)

@@ -57,7 +57,7 @@ public struct FilteredFlagChangeStream: AsyncSequence, Sendable {
 #if swift(>=6)
         @available(macOS 15.0, iOS 18.0, watchOS 11.0, tvOS 18.0, visionOS 2.0, *)
         public mutating func next(
-            isolation actor: isolated (any Actor)?
+            isolation actor: isolated (any Actor)?,
         ) async -> FlagChange? {
             await iterator.next(isolation: actor)
         }
@@ -98,7 +98,7 @@ public struct EmptyFlagChangeStream: AsyncSequence, Sendable {
 #if swift(>=6)
         @available(macOS 15.0, iOS 18.0, watchOS 11.0, tvOS 18.0, visionOS 2.0, *)
         public func next(
-            isolation actor: isolated (any Actor)?
+            isolation actor: isolated (any Actor)?,
         ) async -> FlagChange? {
             nil
         }

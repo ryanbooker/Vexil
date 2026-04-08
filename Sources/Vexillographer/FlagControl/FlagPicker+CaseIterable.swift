@@ -27,7 +27,7 @@ public extension FlagPicker where Value: CaseIterable, SelectionValue == Value, 
 public extension FlagPicker {
 
     init<Wrapped: CaseIterable & Hashable>(
-        configuration: FlagControlConfiguration<Value>
+        configuration: FlagControlConfiguration<Value>,
     ) where Value == Wrapped?, SelectionValue == Wrapped?, Content == DefaultFlagPickerContent<Wrapped?> {
         self.init(configuration: configuration, selection: \.wrapped) {
             DefaultFlagPickerContent([nil as Wrapped?] + Array(Wrapped.allCases))

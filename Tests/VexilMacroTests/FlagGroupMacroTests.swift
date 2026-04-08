@@ -50,7 +50,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -84,7 +84,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -121,7 +121,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -155,7 +155,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -189,7 +189,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -223,7 +223,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -259,7 +259,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -293,7 +293,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -330,7 +330,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -364,7 +364,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -398,7 +398,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -432,7 +432,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
@@ -466,7 +466,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 

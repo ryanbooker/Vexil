@@ -62,9 +62,9 @@ extension NSUbiquitousKeyValueStore: NonSendableFlagValueSource {
     public typealias ChangeStream = AsyncThrowingMapSequence<
         AsyncChain2Sequence<
             AsyncFilterSequence<NotificationCenter.Notifications>,
-            AsyncFilterSequence<NotificationCenter.Notifications>
+            AsyncFilterSequence<NotificationCenter.Notifications>,
         >,
-        FlagChange
+        FlagChange,
     >
 
     public func flagValueChanges(keyPathMapper: @Sendable @escaping (String) -> FlagKeyPath) -> ChangeStream {
@@ -75,7 +75,7 @@ extension NSUbiquitousKeyValueStore: NonSendableFlagValueSource {
                 .filter { $0.object.isIdentical(to: this) },
             NotificationCenter.default
                 .notifications(named: Self.didChangeInternallyNotification, object: nil)
-                .filter { $0.object.isIdentical(to: this) }
+                .filter { $0.object.isIdentical(to: this) },
         )
         .map { _ in
             FlagChange.all

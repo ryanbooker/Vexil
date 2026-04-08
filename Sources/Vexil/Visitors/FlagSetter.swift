@@ -26,7 +26,7 @@ final class FlagSetter: FlagVisitor {
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
-        wigwag: () -> FlagWigwag<Value>
+        wigwag: () -> FlagWigwag<Value>,
     ) where Value: FlagValue {
         let key = keyPath.key
         guard keys.contains(key), caughtError == nil, let value = value() else {
