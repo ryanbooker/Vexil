@@ -14,9 +14,9 @@
 import SwiftUI
 import Vexil
 
-// A text field
-// - want to dismiss on scroll?
-// - want to have confirm/cancel?
+/// A text field
+/// - want to dismiss on scroll?
+/// - want to have confirm/cancel?
 struct FlagTextField<Value: FlagValue>: View {
 
     private var name: String
@@ -85,7 +85,7 @@ struct FlagTextField<Value: FlagValue>: View {
         .focused($isFocused)
     }
 
-    // Can this be computed key path?
+    /// Can this be computed key path?
     var text: Binding<String> {
         Binding(
             get: { cachedText ?? value[keyPath: formatted] },

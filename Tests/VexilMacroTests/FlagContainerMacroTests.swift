@@ -20,7 +20,7 @@ import XCTest
 
 final class FlagContainerMacroTests: XCTestCase {
 
-    func testExpandsDefault() throws {
+    func testExpandsDefault() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -66,7 +66,7 @@ final class FlagContainerMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsPublic() throws {
+    func testExpandsPublic() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -112,7 +112,7 @@ final class FlagContainerMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsButAlreadyConforming() throws {
+    func testExpandsButAlreadyConforming() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -160,7 +160,7 @@ final class FlagContainerMacroTests: XCTestCase {
 
     // MARK: - Swift 6 specific tests
 
-    func testExpandsVisitorImplementation() throws {
+    func testExpandsVisitorImplementation() {
         assertMacroExpansion(
             """
             @FlagContainer

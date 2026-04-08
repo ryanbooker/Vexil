@@ -17,11 +17,11 @@
 /// - Note: If your flag value source is `Sendable` you should conform directly
 /// to ``FlagValueSource`` and skip this coordinator.
 ///
-public final class FlagValueSourceCoordinator<Source>: Sendable where Source: NonSendableFlagValueSource {
+public final class FlagValueSourceCoordinator<Source: NonSendableFlagValueSource>: Sendable {
 
     // MARK: - Properties
 
-    // Private but for @testable
+    /// Private but for @testable
     let source: Lock<Source>
 
 
@@ -60,7 +60,7 @@ extension FlagValueSourceCoordinator: FlagValueSource {
         }
     }
 
-    public func flagValue<Value>(key: String) -> Value? where Value: FlagValue {
+    public func flagValue<Value: FlagValue>(key: String) -> Value? {
         source.withLockUnchecked {
             $0.flagValue(key: key)
         }

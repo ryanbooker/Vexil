@@ -13,7 +13,7 @@
 
 import SwiftUI
 
-// UI helper
+/// UI helper
 struct RowContent<Content: View>: View {
 
     var label: String

@@ -20,7 +20,7 @@ let package = Package(
 
     dependencies: [
         .package(url: "https://github.com/apple/swift-async-algorithms.git", from: "1.0.0"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat.git", from: "0.54.1"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat.git", from: "0.60.1"),
         .package(url: "https://github.com/swiftlang/swift-syntax.git", "600.0.0" ..< "603.0.0"),
     ],
 

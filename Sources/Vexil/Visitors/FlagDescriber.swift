@@ -15,12 +15,12 @@ final class FlagDescriber: FlagVisitor {
 
     var descriptions = [String]()
 
-    func visitFlag<Value>(
+    func visitFlag<Value: FlagValue>(
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
         wigwag: () -> FlagWigwag<Value>,
-    ) where Value: FlagValue {
+    ) {
         let value = value()
         let description = (value as? CustomDebugStringConvertible)?.debugDescription
             ?? (value as? CustomStringConvertible)?.description

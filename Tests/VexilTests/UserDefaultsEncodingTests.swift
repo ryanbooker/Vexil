@@ -17,7 +17,7 @@ import Foundation
 import Testing
 @testable import Vexil
 
-@Suite("UserDefaults Encoding", .tags(.userDefaults))
+@Suite(.tags(.userDefaults))
 final class UserDefaultsEncodingTests {
 
     private let defaults: UserDefaults
@@ -33,8 +33,8 @@ final class UserDefaultsEncodingTests {
 
     // MARK: - Removing Values
 
-    @Test("Unsets values")
-    func unsets() throws {
+    @Test
+    func `Unsets values`() throws {
         try withUserDefaults(#function) { defaults in
             defaults.set(true, forKey: "test")
             #expect(defaults.object(forKey: "test") != nil)
@@ -47,16 +47,16 @@ final class UserDefaultsEncodingTests {
 
     // MARK: - Decoding Boolean Types
 
-    @Test("Encodes boolean true")
-    func booleanTrue() throws {
+    @Test
+    func `Encodes boolean true`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(true, key: "test")
             #expect(defaults.bool(forKey: "test") == true)
         }
     }
 
-    @Test("Encodes boolean false")
-    func booleanFalse() throws {
+    @Test
+    func `Encodes boolean false`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(false, key: "test")
             #expect(defaults.bool(forKey: "test") == false)
@@ -66,16 +66,16 @@ final class UserDefaultsEncodingTests {
 
     // MARK: - Decoding String Types
 
-    @Test("Encodes string")
-    func string() throws {
+    @Test
+    func `Encodes string`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue("abcd1234", key: "test")
             #expect(defaults.string(forKey: "test") == "abcd1234")
         }
     }
 
-    @Test("Encodes URL")
-    func url() throws {
+    @Test
+    func `Encodes URL`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(URL(string: "https://google.com/")!, key: "test")
             #expect(defaults.string(forKey: "test") == "https://google.com/")
@@ -85,8 +85,8 @@ final class UserDefaultsEncodingTests {
 
     // MARK: - Encoding Float / Double Types
 
-    @Test("Encodes double")
-    func double() throws {
+    @Test
+    func `Encodes double`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(123.456, key: "test")
             #expect(defaults.double(forKey: "test") == 123.456)
@@ -103,80 +103,80 @@ final class UserDefaultsEncodingTests {
 
     // MARK: - Encoding Integer Types
 
-    @Test("Encodes integer")
-    func int() throws {
+    @Test
+    func `Encodes integer`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(1234, key: "test")
             #expect(defaults.integer(forKey: "test") == 1234)
         }
     }
 
-    @Test("Encodes 8-bit integer")
-    func int8() throws {
+    @Test
+    func `Encodes 8-bit integer`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(Int8(12), key: "test")
             #expect(defaults.integer(forKey: "test") == Int8(12))
         }
     }
 
-    @Test("Encodes 16-bit integer")
-    func int16() throws {
+    @Test
+    func `Encodes 16-bit integer`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(Int16(1234), key: "test")
             #expect(defaults.integer(forKey: "test") == Int16(1234))
         }
     }
 
-    @Test("Encodes 32-bit integer")
-    func int32() throws {
+    @Test
+    func `Encodes 32-bit integer`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(Int32(1234), key: "test")
             #expect(defaults.integer(forKey: "test") == Int32(1234))
         }
     }
 
-    @Test("Encodes 64-bit integer")
-    func int64() throws {
+    @Test
+    func `Encodes 64-bit integer`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(Int64(1234), key: "test")
             #expect(defaults.integer(forKey: "test") == Int64(1234))
         }
     }
 
-    @Test("Encodes unsigned integer")
-    func uint() throws {
+    @Test
+    func `Encodes unsigned integer`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(UInt(1234), key: "test")
             #expect(defaults.integer(forKey: "test") == UInt(1234))
         }
     }
 
-    @Test("Encodes 8-bit unsigned integer")
-    func uint8() throws {
+    @Test
+    func `Encodes 8-bit unsigned integer`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(UInt8(12), key: "test")
             #expect(defaults.integer(forKey: "test") == UInt8(12))
         }
     }
 
-    @Test("Encodes 16-bit unsigned integer")
-    func uint16() throws {
+    @Test
+    func `Encodes 16-bit unsigned integer`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(UInt16(1234), key: "test")
             #expect(defaults.integer(forKey: "test") == UInt16(1234))
         }
     }
 
-    @Test("Encodes 32-bit unsigned integer")
-    func uint32() throws {
+    @Test
+    func `Encodes 32-bit unsigned integer`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(UInt32(1234), key: "test")
             #expect(defaults.integer(forKey: "test") == UInt32(1234))
         }
     }
 
-    @Test("Encodes 64-bit unsigned integer")
-    func uint64() throws {
+    @Test
+    func `Encodes 64-bit unsigned integer`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(UInt64(1234), key: "test")
             #expect(defaults.integer(forKey: "test") == UInt64(1234))
@@ -186,8 +186,8 @@ final class UserDefaultsEncodingTests {
 
     // MARK: - Wrapping Types
 
-    @Test("Encodes raw representable")
-    func rawRepresentable() throws {
+    @Test
+    func `Encodes raw representable`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue(TestStruct(rawValue: "Test Value"), key: "test")
             #expect(defaults.string(forKey: "test") == "Test Value")
@@ -198,8 +198,8 @@ final class UserDefaultsEncodingTests {
         }
     }
 
-    @Test("Encodes optional")
-    func optional() throws {
+    @Test
+    func `Encodes optional`() throws {
         try withUserDefaults(#function) { defaults in
             let value: String? = "Test Value"
 
@@ -208,8 +208,8 @@ final class UserDefaultsEncodingTests {
         }
     }
 
-    @Test("Encodes nil")
-    func none() throws {
+    @Test
+    func `Encodes nil`() throws {
         try withUserDefaults(#function) { defaults in
             let value: String? = nil
 
@@ -221,16 +221,16 @@ final class UserDefaultsEncodingTests {
 
     // MARK: - Array Tests
 
-    @Test("Encodes string array")
-    func stringArray() throws {
+    @Test
+    func `Encodes string array`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue([ "abc", "123" ], key: "test")
             #expect(defaults.stringArray(forKey: "test") == [ "abc", "123" ])
         }
     }
 
-    @Test("Encodes integer array")
-    func integerArray() throws {
+    @Test
+    func `Encodes integer array`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue([ 234, -123 ], key: "test")
             #expect(defaults.array(forKey: "test") as? [Int] == [ 234, -123 ])
@@ -240,16 +240,16 @@ final class UserDefaultsEncodingTests {
 
     // MARK: - Dictionary Tests
 
-    @Test("Encodes string dictionary")
-    func stringDictionary() throws {
+    @Test
+    func `Encodes string dictionary`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue([ "key1": "value1", "key2": "value2" ], key: "test")
             #expect(defaults.dictionary(forKey: "test") as? [String: String] == [ "key1": "value1", "key2": "value2" ])
         }
     }
 
-    @Test("Encodes integer dictionary")
-    func integerDictionary() throws {
+    @Test
+    func `Encodes integer dictionary`() throws {
         try withUserDefaults(#function) { defaults in
             try defaults.setFlagValue([ "key1": 123, "key2": -987 ], key: "test")
             #expect(defaults.dictionary(forKey: "test") as? [String: Int] == [ "key1": 123, "key2": -987 ])
@@ -258,8 +258,8 @@ final class UserDefaultsEncodingTests {
 
     // MARK: - Codable Tests
 
-    @Test("Encodes codable")
-    func codable() throws {
+    @Test
+    func `Encodes codable`() throws {
         struct MyStruct: FlagValue, Codable, Equatable {
             let property1: String
             let property2: Int

@@ -17,7 +17,7 @@
 
 extension Snapshot: FlagLookup {
 
-    public func value<Value>(for keyPath: FlagKeyPath) -> Value? where Value: FlagValue {
+    public func value<Value: FlagValue>(for keyPath: FlagKeyPath) -> Value? {
         values.withLock {
             $0[keyPath.key] as? Value
         }

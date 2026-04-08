@@ -14,11 +14,10 @@
 import Testing
 import Vexil
 
-@Suite("Flag Details")
 struct FlagDetailTests {
 
-    @Test("Captures details")
-    func capturesFlagDetails() throws {
+    @Test
+    func `Captures details`() {
         let pole = FlagPole(hoist: TestFlags.self, sources: [])
 
         #expect(pole.$topLevelFlag.key == "top-level-flag")

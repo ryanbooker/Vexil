@@ -45,7 +45,7 @@ import Foundation
 ///         so as not to conflict with the dynamic member properties on your `FlagContainer`.
 ///
 @dynamicMemberLookup
-public final class FlagPole<RootGroup>: Sendable where RootGroup: FlagContainer {
+public final class FlagPole<RootGroup: FlagContainer>: Sendable {
 
     // MARK: - Properties
 
@@ -440,12 +440,12 @@ private final class DebugDescriptionVisitor: FlagVisitor {
 
     var valueDescriptions = [String]()
 
-    func visitFlag<Value>(
+    func visitFlag<Value: FlagValue>(
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
         wigwag: () -> FlagWigwag<Value>,
-    ) where Value: FlagValue {
+    ) {
         guard let value = value() else {
             valueDescriptions.append("\(keyPath.key)=nil")
             return

@@ -22,7 +22,7 @@ final class FlagMacroTests: XCTestCase {
 
     // MARK: - Type Tests
 
-    func testExpandsOptional() throws {
+    func testExpandsOptional() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -57,7 +57,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsPublic() throws {
+    func testExpandsPublic() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -95,7 +95,7 @@ final class FlagMacroTests: XCTestCase {
 
     // MARK: - Property Initialisation Tests
 
-    func testExpandsBoolPropertyInitialization() throws {
+    func testExpandsBoolPropertyInitialization() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -130,7 +130,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsDoublePropertyInitialization() throws {
+    func testExpandsDoublePropertyInitialization() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -165,7 +165,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsStringPropertyInitialization() throws {
+    func testExpandsStringPropertyInitialization() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -200,7 +200,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsEnumPropertyInitialization() throws {
+    func testExpandsEnumPropertyInitialization() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -235,7 +235,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsTypePropertyInitialization() throws {
+    func testExpandsTypePropertyInitialization() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -270,7 +270,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsForceUnwrapPropertyInitialization() throws {
+    func testExpandsForceUnwrapPropertyInitialization() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -307,7 +307,7 @@ final class FlagMacroTests: XCTestCase {
 
     // MARK: - Argument Tests
 
-    func testExpandsName() throws {
+    func testExpandsName() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -342,7 +342,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testHiddenDescription() throws {
+    func testHiddenDescription() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -377,7 +377,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testHiddenDescriptionExplicit() throws {
+    func testHiddenDescriptionExplicit() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -415,7 +415,7 @@ final class FlagMacroTests: XCTestCase {
 
     // MARK: - Key Strategy Detection Tests
 
-    func testDetectsKeyStrategyMinimal() throws {
+    func testDetectsKeyStrategyMinimal() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -450,7 +450,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testDetectsKeyStrategyFull() throws {
+    func testDetectsKeyStrategyFull() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -488,7 +488,7 @@ final class FlagMacroTests: XCTestCase {
 
     // MARK: - Key Strategy Tests
 
-    func testKeyStrategyDefault() throws {
+    func testKeyStrategyDefault() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -523,7 +523,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testKeyStrategyKebabcase() throws {
+    func testKeyStrategyKebabcase() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -558,7 +558,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testKeyStrategySnakecase() throws {
+    func testKeyStrategySnakecase() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -593,7 +593,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testKeyStrategyCustomKey() throws {
+    func testKeyStrategyCustomKey() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -628,7 +628,7 @@ final class FlagMacroTests: XCTestCase {
         )
     }
 
-    func testKeyStrategyCustomKeyPath() throws {
+    func testKeyStrategyCustomKeyPath() {
         assertMacroExpansion(
             """
             struct TestFlags {

@@ -38,7 +38,7 @@ extension UserDefaults: NonSendableFlagValueSource {
     }
 
     /// Fetch values for the specified key
-    public func flagValue<Value>(key: String) -> Value? where Value: FlagValue {
+    public func flagValue<Value: FlagValue>(key: String) -> Value? {
 
         guard
             let object = object(forKey: key),

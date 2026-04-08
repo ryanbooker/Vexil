@@ -20,7 +20,7 @@ import XCTest
 
 final class EquatableFlagContainerMacroTests: XCTestCase {
 
-    func testGeneratesWhenEmpty() throws {
+    func testGeneratesWhenEmpty() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -66,7 +66,7 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsInternal() throws {
+    func testExpandsInternal() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -170,7 +170,7 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsPublic() throws {
+    func testExpandsPublic() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -248,7 +248,7 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsPublicExtension() throws {
+    func testExpandsPublicExtension() {
         assertMacroExpansion(
             """
             public extension SomeContainer {
@@ -329,7 +329,7 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsButAlreadyConforming() throws {
+    func testExpandsButAlreadyConforming() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -406,7 +406,7 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsVisitorAndEquatableImplementation() throws {
+    func testExpandsVisitorAndEquatableImplementation() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -503,7 +503,7 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
         )
     }
 
-    func testExpandsVisitorAndEquatablePublicImplementation() throws {
+    func testExpandsVisitorAndEquatablePublicImplementation() {
         assertMacroExpansion(
             """
             @FlagContainer

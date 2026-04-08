@@ -17,14 +17,14 @@ import Foundation
 import os.lock
 #endif
 
-struct Mutex<Value: ~Copyable>: ~Copyable, Sendable {
+struct Mutex<Value: ~Copyable>: ~Copyable {
 
-    // Mutex isn't supposed to use an allocation, but the tools we would need to
-    // *avoid* an allocation are not available to us (we'd need to import `Builtin`,
-    // which is forbidden)
-    //
-    // Using an allocation here makes us a reference type, but since Mutex is not
-    // Copyable, it's pretty hard to *observe* that in practice.
+    /// Mutex isn't supposed to use an allocation, but the tools we would need to
+    /// *avoid* an allocation are not available to us (we'd need to import `Builtin`,
+    /// which is forbidden)
+    ///
+    /// Using an allocation here makes us a reference type, but since Mutex is not
+    /// Copyable, it's pretty hard to *observe* that in practice.
     private let platformLock: PlatformLock<Value>
 
     init(_ initialValue: consuming sending Value) {
@@ -42,7 +42,7 @@ struct Mutex<Value: ~Copyable>: ~Copyable, Sendable {
 /// This is a lock that will use the most appropriate platform lock under the hood. On Apple platforms
 /// it is effectively a wrapper around `OSAllocatedUnfairLock`. On non-Apple platforms it'll
 /// use `pthread_lock` and friends.
-package struct Lock<State>: Sendable {
+package struct Lock<State> {
 
     private let platformLock: PlatformLock<State>
 
@@ -154,12 +154,12 @@ struct PlatformLock<Value: ~Copyable> {
 
 #endif
 
-    // ManagedBuffer is frankly insane, but it's a good way to ensure we have a single heap
-    // allocation containing both the lock and the state, and that we can hook into deinit
-    // to ensure that the PlatformLock and State both get correctly destroyed.
-    //
-    // It's horrible to use, but without it, we either have to accept a second allocation,
-    // or drop down to runtime magic.
+    /// ManagedBuffer is frankly insane, but it's a good way to ensure we have a single heap
+    /// allocation containing both the lock and the state, and that we can hook into deinit
+    /// to ensure that the PlatformLock and State both get correctly destroyed.
+    ///
+    /// It's horrible to use, but without it, we either have to accept a second allocation,
+    /// or drop down to runtime magic.
     private final class LockBuffer: ManagedBuffer<ActualPlatformLock, Disconnected<Value>> {
 
         deinit {
@@ -204,9 +204,9 @@ struct PlatformLock<Value: ~Copyable> {
 
 }
 
-// Safe to be `Sendable` because `state` is accessible
-// only via the `withLock` method, which wraps the access
-// in `withPlatformLock`.
+/// Safe to be `Sendable` because `state` is accessible
+/// only via the `withLock` method, which wraps the access
+/// in `withPlatformLock`.
 extension PlatformLock: @unchecked Sendable {}
 
 // MARK: - Disconnected
@@ -219,7 +219,7 @@ private struct Disconnected<Value: ~Copyable>: ~Copyable, @unchecked Sendable {
     }
 
 #if compiler(>=6.2)
-    /// Swift 6.2 may miscompile `consume()` when inlined.
+    // Swift 6.2 may miscompile `consume()` when inlined.
     @inline(never)
 #endif
     consuming func consume() -> sending Value {

@@ -30,7 +30,9 @@ struct FlagItem<Value: FlagValue>: FlagPoleItem {
         flag.keyPath
     }
 
-    var name: String { flag.name }
+    var name: String {
+        flag.name
+    }
 
     func makeContent() -> any View {
         FlagItemContent(wigwag: flag)

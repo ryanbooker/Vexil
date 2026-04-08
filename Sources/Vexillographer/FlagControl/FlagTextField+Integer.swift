@@ -14,7 +14,7 @@
 import SwiftUI
 import Vexil
 
-// TextField convenience for integer
+/// TextField convenience for integer
 extension FlagTextField where Value.BoxedValueType: BinaryInteger {
 
     init(configuration: FlagControlConfiguration<Value>) {

@@ -14,11 +14,11 @@
 import Testing
 import Vexil
 
-@Suite("Snapshots", .tags(.pole, .snapshot))
+@Suite(.tags(.pole, .snapshot))
 struct SnapshotTests {
 
-    @Test("Reads from snapshot")
-    func snapshotReading() {
+    @Test
+    func `Reads from snapshot`() {
         let pole = FlagPole(hoist: TestFlags.self, sources: [])
         let snapshot = pole.emptySnapshot()
 
@@ -27,8 +27,8 @@ struct SnapshotTests {
         #expect(snapshot.subgroup.doubleSubgroup.thirdLevelFlag == false)
     }
 
-    @Test("Writes to snapshot")
-    func snapshotWriting() {
+    @Test
+    func `Writes to snapshot`() {
         let pole = FlagPole(hoist: TestFlags.self, sources: [])
         let snapshot = pole.emptySnapshot()
         snapshot.topLevelFlag = true
@@ -42,8 +42,8 @@ struct SnapshotTests {
 
     // MARK: - Taking Snapshots
 
-    @Test("Takes empty snapshot")
-    func emptySnapshot() {
+    @Test
+    func `Takes empty snapshot`() {
         let pole = FlagPole(hoist: TestFlags.self, sources: [])
 
         // craft a snapshot
@@ -64,8 +64,8 @@ struct SnapshotTests {
         #expect(snapshot.subgroup.doubleSubgroup.thirdLevelFlag == false)
     }
 
-    @Test("Snapshots reflect current sources")
-    func currentSources() {
+    @Test
+    func `Snapshots reflect current sources`() {
         let pole = FlagPole(hoist: TestFlags.self, sources: [])
 
         // craft a snapshot
@@ -96,8 +96,8 @@ struct SnapshotTests {
         #expect(empty.subgroup.doubleSubgroup.thirdLevelFlag == false)
     }
 
-    @Test("Snapshots specific source", .tags(.dictionary))
-    func specificSource() throws {
+    @Test(.tags(.dictionary))
+    func `Snapshots specific source`() {
 
         // GIVEN a FlagPole and a dictionary that is not a part it
         let pole = FlagPole(hoist: TestFlags.self, sources: [])

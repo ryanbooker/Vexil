@@ -14,7 +14,7 @@
 import SwiftUI
 import Vexil
 
-// Public way to create single custom controls
+/// Public way to create single custom controls
 public struct FlagControl<Value: FlagValue, Content: View>: View {
 
     private var wigwag: FlagWigwag<Value>

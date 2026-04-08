@@ -34,6 +34,8 @@ struct DoubleAndBooleanControlStyle: FlagControlStyle {
 
 extension FlagControlStyle where Self == DoubleAndBooleanControlStyle {
 
-    static var doubleAndBoolean: Self { Self() }
+    static var doubleAndBoolean: Self {
+        Self()
+    }
 
 }

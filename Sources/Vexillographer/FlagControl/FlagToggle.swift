@@ -14,7 +14,7 @@
 import SwiftUI
 import Vexil
 
-// A toggle
+/// A toggle
 public struct FlagToggle<Value: FlagValue>: View where Value.BoxedValueType == Bool {
 
     private var name: String

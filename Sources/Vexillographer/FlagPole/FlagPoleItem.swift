@@ -26,7 +26,9 @@ protocol FlagPoleItem {
 
 extension FlagPoleItem {
     @MainActor
-    var content: AnyView { AnyView(makeContent()) }
+    var content: AnyView {
+        AnyView(makeContent())
+    }
 }
 
 extension FlagPoleItem {

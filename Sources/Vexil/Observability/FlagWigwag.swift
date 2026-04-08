@@ -24,7 +24,7 @@ import Combine
 ///
 /// For more information on Wigwags see https://en.wikipedia.org/wiki/Wigwag_(flag_signals)
 ///
-public struct FlagWigwag<Output>: Sendable where Output: FlagValue {
+public struct FlagWigwag<Output: FlagValue>: Sendable {
 
     // MARK: - Properties
 
@@ -120,7 +120,7 @@ extension FlagWigwag: Publisher {
     public typealias Output = Output
     public typealias Failure = Never
 
-    public func receive<S>(subscriber: S) where S: Subscriber, S.Failure == Failure, S.Input == Output {
+    public func receive<S: Subscriber>(subscriber: S) where S.Failure == Failure, S.Input == Output {
         FlagPublisher(makeAsyncSequence())
             .receive(subscriber: subscriber)
     }

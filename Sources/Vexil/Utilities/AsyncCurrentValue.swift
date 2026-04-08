@@ -13,7 +13,7 @@
 
 import Foundation
 
-struct AsyncCurrentValue<Wrapped: Sendable>: Sendable {
+struct AsyncCurrentValue<Wrapped: Sendable> {
 
     struct State {
         // iterators start with generation = 0, so our initial value

@@ -63,7 +63,7 @@ import Foundation
 /// ```
 ///
 @dynamicMemberLookup
-public final class Snapshot<RootGroup>: Sendable where RootGroup: FlagContainer {
+public final class Snapshot<RootGroup: FlagContainer>: Sendable {
 
     // MARK: - Properties
 

@@ -20,12 +20,12 @@ final class FlagRemover: FlagVisitor {
         self.source = source
     }
 
-    func visitFlag<Value>(
+    func visitFlag<Value: FlagValue>(
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
         wigwag: () -> FlagWigwag<Value>,
-    ) where Value: FlagValue {
+    ) {
         guard caughtError == nil else {
             return
         }

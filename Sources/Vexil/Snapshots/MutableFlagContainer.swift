@@ -15,7 +15,7 @@ import Foundation
 
 /// A `MutableFlagGroup` is a wrapper type that provides a "setter" for each contained `Flag`.
 @dynamicMemberLookup
-public class MutableFlagContainer<Container> where Container: FlagContainer {
+public class MutableFlagContainer<Container: FlagContainer> {
 
 
     // MARK: - Properties
