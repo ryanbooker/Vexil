@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -17,7 +17,7 @@ import Testing
 struct ExamplesTests {
 
     @Test
-    func example() async throws {
+    func example() {
         // Write your test here and use APIs like `#expect(...)` to check expected conditions.
     }
 

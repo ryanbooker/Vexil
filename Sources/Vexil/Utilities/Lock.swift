@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -17,14 +17,14 @@ import Foundation
 import os.lock
 #endif
 
-struct Mutex<Value: ~Copyable>: ~Copyable, Sendable {
+struct Mutex<Value: ~Copyable>: ~Copyable {
 
-    // Mutex isn't supposed to use an allocation, but the tools we would need to
-    // *avoid* an allocation are not available to us (we'd need to import `Builtin`,
-    // which is forbidden)
-    //
-    // Using an allocation here makes us a reference type, but since Mutex is not
-    // Copyable, it's pretty hard to *observe* that in practice.
+    /// Mutex isn't supposed to use an allocation, but the tools we would need to
+    /// *avoid* an allocation are not available to us (we'd need to import `Builtin`,
+    /// which is forbidden)
+    ///
+    /// Using an allocation here makes us a reference type, but since Mutex is not
+    /// Copyable, it's pretty hard to *observe* that in practice.
     private let platformLock: PlatformLock<Value>
 
     init(_ initialValue: consuming sending Value) {
@@ -32,7 +32,7 @@ struct Mutex<Value: ~Copyable>: ~Copyable, Sendable {
     }
 
     borrowing func withLock<Result: ~Copyable>(
-        _ body: (inout sending Value) throws -> sending Result
+        _ body: (inout sending Value) throws -> sending Result,
     ) rethrows -> sending Result {
         try platformLock.withLock(body)
     }
@@ -42,24 +42,24 @@ struct Mutex<Value: ~Copyable>: ~Copyable, Sendable {
 /// This is a lock that will use the most appropriate platform lock under the hood. On Apple platforms
 /// it is effectively a wrapper around `OSAllocatedUnfairLock`. On non-Apple platforms it'll
 /// use `pthread_lock` and friends.
-struct Lock<State>: Sendable {
+package struct Lock<State> {
 
     private let platformLock: PlatformLock<State>
 
-    init(uncheckedState: State) {
+    package init(uncheckedState: State) {
         nonisolated(unsafe) let initialState = uncheckedState
         self.platformLock = PlatformLock(initialState)
     }
 
-    init(initialState: State) where State: Sendable {
+    package init(initialState: State) where State: Sendable {
         self.platformLock = PlatformLock(initialState)
     }
 
-    init(_ initialState: State) where State: Sendable  {
+    package init(_ initialState: State) where State: Sendable  {
         self.platformLock = PlatformLock(initialState)
     }
 
-    func withLockUnchecked<R>(_ body: (inout State) throws -> R) rethrows -> R {
+    package func withLockUnchecked<R>(_ body: (inout State) throws -> R) rethrows -> R {
         try platformLock.withLock {
             var state = $0
             do {
@@ -73,7 +73,7 @@ struct Lock<State>: Sendable {
         }
     }
 
-    func withLock<R: Sendable>(_ body: @Sendable (inout State) throws -> R) rethrows -> R {
+    package func withLock<R: Sendable>(_ body: @Sendable (inout State) throws -> R) rethrows -> R {
         try withLockUnchecked(body)
     }
 
@@ -100,7 +100,7 @@ struct PlatformLock<Value: ~Copyable> {
     private static func withPlatformLock<R: ~Copyable, E: Error>(
         _ lockPointer: UnsafeMutablePointer<ActualPlatformLock>,
         _ valuePointer: UnsafeMutablePointer<Disconnected<Value>>,
-        _ body: (inout sending Value) throws(E) -> sending R
+        _ body: (inout sending Value) throws(E) -> sending R,
     ) throws(E) -> sending R {
         os_unfair_lock_lock(lockPointer)
         defer {
@@ -135,7 +135,7 @@ struct PlatformLock<Value: ~Copyable> {
     private static func withPlatformLock<R: ~Copyable, E: Error>(
         _ lockPointer: UnsafeMutablePointer<ActualPlatformLock>,
         _ valuePointer: UnsafeMutablePointer<Disconnected<Value>>,
-        _ body: (inout sending Value) throws(E) -> sending R
+        _ body: (inout sending Value) throws(E) -> sending R,
     ) throws(E) -> sending R {
         let error = pthread_mutex_lock(lockPointer)
         // pthread_mutex_lock can only fail with EDEADLK, which the os_unfair_lock
@@ -154,12 +154,12 @@ struct PlatformLock<Value: ~Copyable> {
 
 #endif
 
-    // ManagedBuffer is frankly insane, but it's a good way to ensure we have a single heap
-    // allocation containing both the lock and the state, and that we can hook into deinit
-    // to ensure that the PlatformLock and State both get correctly destroyed.
-    //
-    // It's horrible to use, but without it, we either have to accept a second allocation,
-    // or drop down to runtime magic.
+    /// ManagedBuffer is frankly insane, but it's a good way to ensure we have a single heap
+    /// allocation containing both the lock and the state, and that we can hook into deinit
+    /// to ensure that the PlatformLock and State both get correctly destroyed.
+    ///
+    /// It's horrible to use, but without it, we either have to accept a second allocation,
+    /// or drop down to runtime magic.
     private final class LockBuffer: ManagedBuffer<ActualPlatformLock, Disconnected<Value>> {
 
         deinit {
@@ -192,7 +192,7 @@ struct PlatformLock<Value: ~Copyable> {
     }
 
     func withLock<R: ~Copyable, E: Error>(
-        _ body: (inout sending Value) throws(E) -> sending R
+        _ body: (inout sending Value) throws(E) -> sending R,
     ) throws(E) -> sending R {
         // `withUnsafeMutablePointers` doesn't handle `sending` result types, so we
         // transfer the result inside a `Disconnected` to appease the compiler.
@@ -204,9 +204,9 @@ struct PlatformLock<Value: ~Copyable> {
 
 }
 
-// Safe to be `Sendable` because `state` is accessible
-// only via the `withLock` method, which wraps the access
-// in `withPlatformLock`.
+/// Safe to be `Sendable` because `state` is accessible
+/// only via the `withLock` method, which wraps the access
+/// in `withPlatformLock`.
 extension PlatformLock: @unchecked Sendable {}
 
 // MARK: - Disconnected
@@ -219,7 +219,7 @@ private struct Disconnected<Value: ~Copyable>: ~Copyable, @unchecked Sendable {
     }
 
 #if compiler(>=6.2)
-    /// Swift 6.2 may miscompile `consume()` when inlined.
+    // Swift 6.2 may miscompile `consume()` when inlined.
     @inline(never)
 #endif
     consuming func consume() -> sending Value {
@@ -243,7 +243,7 @@ private struct Disconnected<Value: ~Copyable>: ~Copyable, @unchecked Sendable {
 #endif
 
     mutating func withValue<R: ~Copyable, E: Error>(
-        _ work: (inout sending Value) throws(E) -> sending R
+        _ work: (inout sending Value) throws(E) -> sending R,
     ) throws(E) -> sending R {
         try work(&value)
     }

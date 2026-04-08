@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -45,7 +45,7 @@
 @attached(accessor)
 @attached(peer, names: prefixed(`$`))
 public macro Flag(
-    _ description: StaticString
+    _ description: StaticString,
 ) = #externalMacro(module: "VexilMacros", type: "FlagMacro")
 
 /// Creates a flag with the specified configuration.
@@ -91,5 +91,5 @@ public macro Flag(
     name: StaticString? = nil,
     keyStrategy: VexilConfiguration.FlagKeyStrategy = .default,
     description: StaticString,
-    display: FlagDisplayOption = .default
+    display: FlagDisplayOption = .default,
 ) = #externalMacro(module: "VexilMacros", type: "FlagMacro")

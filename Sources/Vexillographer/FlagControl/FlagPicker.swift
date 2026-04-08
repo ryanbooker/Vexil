@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -14,7 +14,7 @@
 import SwiftUI
 import Vexil
 
-// A picker
+/// A picker
 public struct FlagPicker<Value: FlagValue, SelectionValue: Hashable, Content: View>: View {
 
     private var name: String
@@ -26,7 +26,7 @@ public struct FlagPicker<Value: FlagValue, SelectionValue: Hashable, Content: Vi
     init(
         configuration: FlagControlConfiguration<Value>,
         selection: WritableKeyPath<Value, SelectionValue>,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) {
         self.name = configuration.name
         _value = configuration.$value

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -14,14 +14,14 @@
 import SwiftUI
 import Vexil
 
-// TextField convenience for integer
+/// TextField convenience for integer
 extension FlagTextField where Value.BoxedValueType: BinaryInteger {
 
     init(configuration: FlagControlConfiguration<Value>) {
         self = Self(
             configuration: configuration,
             formatted: \.asString,
-            editingFormat: { $0.filter(\.isNumber) }
+            editingFormat: { $0.filter(\.isNumber) },
         )
 #if os(iOS) || os(tvOS)
         .keyboardType(.numberPad)
@@ -59,7 +59,7 @@ extension FlagTextField {
         self = Self(
             configuration: configuration,
             formatted: \.asStringOrEmpty,
-            editingFormat: { $0.filter(\.isNumber) }
+            editingFormat: { $0.filter(\.isNumber) },
         )
 #if os(iOS) || os(tvOS)
         .keyboardType(.numberPad)
@@ -90,7 +90,7 @@ extension FlagControlConfiguration: OptionalIntegerFlagTextFieldRepresentable wh
         FlagTextField(
             configuration: self,
             formatted: \.asStringOrEmpty,
-            editingFormat: { $0.filter(\.isNumber) }
+            editingFormat: { $0.filter(\.isNumber) },
         )
 #if os(iOS) || os(tvOS)
         .keyboardType(.numberPad)

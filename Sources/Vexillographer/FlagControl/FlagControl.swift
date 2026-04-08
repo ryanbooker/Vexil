@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -14,7 +14,7 @@
 import SwiftUI
 import Vexil
 
-// Public way to create single custom controls
+/// Public way to create single custom controls
 public struct FlagControl<Value: FlagValue, Content: View>: View {
 
     private var wigwag: FlagWigwag<Value>
@@ -30,7 +30,7 @@ public struct FlagControl<Value: FlagValue, Content: View>: View {
 
     public init(
         _ wigwag: FlagWigwag<Value>,
-        @ViewBuilder content: @escaping (FlagControlConfiguration<Value>) -> Content
+        @ViewBuilder content: @escaping (FlagControlConfiguration<Value>) -> Content,
     ) {
         self.wigwag = wigwag
         self.content = content
@@ -47,8 +47,8 @@ public struct FlagControl<Value: FlagValue, Content: View>: View {
                 hasValue: editableValue != nil,
                 defaultValue: wigwag.defaultValue,
                 value: Binding(get: getValue, set: setValue),
-                resetValue: resetValue
-            )
+                resetValue: resetValue,
+            ),
         )
         .task {
             for await _ in wigwag.changes {

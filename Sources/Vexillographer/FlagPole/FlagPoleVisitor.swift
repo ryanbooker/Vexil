@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -38,7 +38,7 @@ class FlagPoleVisitor: FlagVisitor {
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
-        wigwag: () -> FlagWigwag<Value>
+        wigwag: () -> FlagWigwag<Value>,
     ) {
         appendToGroupOrRoot(FlagItem(wigwag()))
     }

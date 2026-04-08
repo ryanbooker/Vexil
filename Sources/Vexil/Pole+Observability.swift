@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -26,7 +26,7 @@ import Combine
 /// Each subscriber to the `Publisher` will iterate over the sequence independently,
 /// use `.multicast()` or `.shared()` if you want to share the iterator.
 ///
-struct FlagPublisher<Elements>: Sendable where Elements: _Concurrency.AsyncSequence & Sendable, Elements.Element: Sendable {
+struct FlagPublisher<Elements: _Concurrency.AsyncSequence & Sendable> where Elements.Element: Sendable {
 
     /// The `AsyncSequence` that we are publishing elements from
     let sequence: Elements
@@ -46,7 +46,7 @@ extension FlagPublisher: Publisher {
     typealias Output = Elements.Element
     typealias Failure = Never
 
-    func receive<S>(subscriber: S) where S: Subscriber, Failure == S.Failure, Elements.Element == S.Input {
+    func receive<S: Subscriber>(subscriber: S) where Failure == S.Failure, Elements.Element == S.Input {
         let subscription = Subscription(sequence: sequence, downstream: subscriber)
         subscriber.receive(subscription: subscription)
     }

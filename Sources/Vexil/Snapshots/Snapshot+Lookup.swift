@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -17,7 +17,7 @@
 
 extension Snapshot: FlagLookup {
 
-    public func value<Value>(for keyPath: FlagKeyPath) -> Value? where Value: FlagValue {
+    public func value<Value: FlagValue>(for keyPath: FlagKeyPath) -> Value? {
         values.withLock {
             $0[keyPath.key] as? Value
         }

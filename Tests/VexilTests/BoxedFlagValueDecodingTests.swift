@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -15,7 +15,7 @@ import Foundation
 import Testing
 @testable import Vexil
 
-@Suite("BoxedFlagValue decoding", .tags(.boxing, .codable))
+@Suite(.tags(.boxing, .codable))
 struct BoxedFlagValueDecodingTests {
 
     private let decoder: JSONDecoder = {
@@ -28,15 +28,15 @@ struct BoxedFlagValueDecodingTests {
 
     // MARK: - Boolean Flag Values
 
-    @Test("Decodes boolean true")
-    func booleanTrueFlagValue() throws {
+    @Test
+    func `Decodes boolean true`() throws {
         let input = #"{"b":true}"#.utf8
         let decoded = try decoder.decode(BoxedFlagValue.self, from: Data(input))
         #expect(decoded == .bool(true))
     }
 
-    @Test("Decodes boolean false")
-    func booleanFalseFlagValue() throws {
+    @Test
+    func `Decodes boolean false`() throws {
         let input = #"{"b":false}"#.utf8
         let decoded = try decoder.decode(BoxedFlagValue.self, from: Data(input))
         #expect(decoded == .bool(false))
@@ -45,8 +45,8 @@ struct BoxedFlagValueDecodingTests {
 
     // MARK: - String Flag Values
 
-    @Test("Decodes string")
-    func stringFlagValue() throws {
+    @Test
+    func `Decodes string`() throws {
         let input = #"{"s":"Test String"}"#.utf8
         let decoded = try decoder.decode(BoxedFlagValue.self, from: Data(input))
         #expect(decoded == .string("Test String"))
@@ -55,8 +55,8 @@ struct BoxedFlagValueDecodingTests {
 
     // MARK: - Data Values
 
-    @Test("Decodes data")
-    func dataFlagValue() throws {
+    @Test
+    func `Decodes data`() throws {
         let input = #"{"d":"VGVzdCBzdHJpbmc="}"#.utf8
         let decoded = try decoder.decode(BoxedFlagValue.self, from: Data(input))
         #expect(decoded == .data(Data("Test string".utf8)))
@@ -65,22 +65,22 @@ struct BoxedFlagValueDecodingTests {
 
     // MARK: - Number Flag Values
 
-    @Test("Decodes integer")
-    func intFlagValue() throws {
+    @Test
+    func `Decodes integer`() throws {
         let input = #"{"i":1234}"#.utf8
         let decoded = try decoder.decode(BoxedFlagValue.self, from: Data(input))
         #expect(decoded == .integer(1234))
     }
 
-    @Test("Decodes double")
-    func doubleFlagValue() throws {
+    @Test
+    func `Decodes double`() throws {
         let input = #"{"r":123.456}"#.utf8
         let decoded = try decoder.decode(BoxedFlagValue.self, from: Data(input))
         #expect(decoded == .double(123.456))
     }
 
-    @Test("Decodes float")
-    func floatFlagValue() throws {
+    @Test
+    func `Decodes float`() throws {
         let input = #"{"f":123.456}"#.utf8
         let decoded = try decoder.decode(BoxedFlagValue.self, from: Data(input))
         #expect(decoded == .float(123.456))
@@ -89,8 +89,8 @@ struct BoxedFlagValueDecodingTests {
 
     // MARK: - Wrapping Types
 
-    @Test("Decodes nil")
-    func optionalNoFlagValue() throws {
+    @Test
+    func `Decodes nil`() throws {
         let input = #"{"n":null}"#.utf8
         let decoded = try decoder.decode(BoxedFlagValue.self, from: Data(input))
         #expect(decoded == .none)
@@ -99,15 +99,15 @@ struct BoxedFlagValueDecodingTests {
 
     // MARK: - Collection Types
 
-    @Test("Decodes array")
-    func arrayFlagValue() throws {
+    @Test
+    func `Decodes array`() throws {
         let input = #"{"a":[{"i":123},{"i":456},{"i":789}]}"#.utf8
         let decoded = try decoder.decode(BoxedFlagValue.self, from: Data(input))
         #expect(decoded == .array([ .integer(123), .integer(456), .integer(789) ]))
     }
 
-    @Test("Decodes dictionary")
-    func dictionaryFlagValue() throws {
+    @Test
+    func `Decodes dictionary`() throws {
         let input = #"{"o":{"one":{"i":123},"three":{"i":789},"two":{"i":456}}}"#.utf8
         let decoded = try decoder.decode(BoxedFlagValue.self, from: Data(input))
         #expect(decoded == .dictionary([ "one": .integer(123), "two": .integer(456), "three": .integer(789) ]))

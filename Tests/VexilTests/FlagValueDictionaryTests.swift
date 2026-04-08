@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -15,13 +15,13 @@ import Foundation
 import Testing
 @testable import Vexil
 
-@Suite("FlagValueDictionary", .tags(.dictionary))
+@Suite(.tags(.dictionary))
 struct FlagValueDictionaryTests {
 
     // MARK: - Reading Values
 
-    @Test("Gets flag value when FlagValueSource", .tags(.pole))
-    func readsValues() {
+    @Test(.tags(.pole))
+    func `Gets flag value when FlagValueSource`() {
         let source: FlagValueDictionary = [
             "top-level-flag": .bool(true),
         ]
@@ -34,8 +34,8 @@ struct FlagValueDictionaryTests {
 
     // MARK: - Writing Values
 
-    @Test("Sets flag value when FlagValueSource", .tags(.pole, .saving))
-    func writesValues() throws {
+    @Test(.tags(.pole, .saving))
+    func `Sets flag value when FlagValueSource`() throws {
         let source = FlagValueDictionary()
         let flagPole = FlagPole(hoist: TestFlags.self, sources: [ source ])
 
@@ -51,36 +51,36 @@ struct FlagValueDictionaryTests {
 
     // MARK: - Equatable Tests
 
-    @Test("Supports Equatable")
-    func equatable() {
+    @Test
+    func `Supports Equatable`() {
 
         let identifier1 = UUID().uuidString
         let original = FlagValueDictionary(
             id: identifier1,
             storage: [
                 "top-level-flag": .bool(true),
-            ]
+            ],
         )
 
         let same = FlagValueDictionary(
             id: identifier1,
             storage: [
                 "top-level-flag": .bool(true),
-            ]
+            ],
         )
 
         let differentContent = FlagValueDictionary(
             id: identifier1,
             storage: [
                 "top-level-flag": .bool(false),
-            ]
+            ],
         )
 
         let differentIdentifier = FlagValueDictionary(
             id: UUID().uuidString,
             storage: [
                 "top-level-flag": .bool(true),
-            ]
+            ],
         )
 
         let originalValues = original.allValues
@@ -96,8 +96,8 @@ struct FlagValueDictionaryTests {
 
     // MARK: - Codable Tests
 
-    @Test("Supports Codable", .tags(.codable))
-    func codable() throws {
+    @Test(.tags(.codable))
+    func `Supports Codable`() throws {
         // BoxedFlagValue's Codable support is more heavily tested in it's tests
         let source: FlagValueDictionary = [
             "bool-flag": .bool(true),

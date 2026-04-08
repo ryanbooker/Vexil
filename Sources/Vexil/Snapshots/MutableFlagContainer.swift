@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -15,7 +15,7 @@ import Foundation
 
 /// A `MutableFlagGroup` is a wrapper type that provides a "setter" for each contained `Flag`.
 @dynamicMemberLookup
-public class MutableFlagContainer<Container> where Container: FlagContainer {
+public class MutableFlagContainer<Container: FlagContainer> {
 
 
     // MARK: - Properties

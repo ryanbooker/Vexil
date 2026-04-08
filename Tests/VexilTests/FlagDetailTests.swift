@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -14,11 +14,10 @@
 import Testing
 import Vexil
 
-@Suite("Flag Details")
 struct FlagDetailTests {
 
-    @Test("Captures details")
-    func capturesFlagDetails() throws {
+    @Test
+    func `Captures details`() {
         let pole = FlagPole(hoist: TestFlags.self, sources: [])
 
         #expect(pole.$topLevelFlag.key == "top-level-flag")

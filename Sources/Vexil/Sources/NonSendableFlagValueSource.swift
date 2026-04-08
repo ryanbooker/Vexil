@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -45,7 +45,7 @@ public protocol NonSendableFlagValueSource {
     var flagValueSourceName: String { get }
 
     /// Provide a way to fetch values. The ``BoxedFlagValue`` type is there to help with boxing and unboxing of flag values.
-    func flagValue<Value>(key: String) -> Value? where Value: FlagValue
+    func flagValue<Value: FlagValue>(key: String) -> Value?
 
     /// And to save values – if your source does not support saving just do nothing. The ``BoxedFlagValue`` type is there to
     /// help with boxing and unboxing of flag values.

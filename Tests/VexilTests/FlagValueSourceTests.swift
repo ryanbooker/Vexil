@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -15,11 +15,11 @@ import Foundation
 import Testing
 @testable import Vexil
 
-@Suite("FlagValueSource", .tags(.pole, .source))
+@Suite(.tags(.pole, .source))
 struct FlagValueSourceTests {
 
-    @Test("Reads values from source")
-    func readsFromSource() {
+    @Test
+    func `Reads values from source`() {
         let accessedKeys = Lock(initialState: [String]())
         let values = [
             "test-flag": true,
@@ -44,8 +44,8 @@ struct FlagValueSourceTests {
         #expect(keys.last == "test-flag")
     }
 
-    @Test("Writes values to source", .tags(.snapshot))
-    func writesToSource() throws {
+    @Test(.tags(.snapshot))
+    func `Writes values to source`() throws {
         let setEvents = Lock(initialState: [TestSetSource.Event]())
         let source = TestSetSource { event in
             setEvents.withLock {
@@ -69,8 +69,8 @@ struct FlagValueSourceTests {
         #expect(events.last?.1 == false)
     }
 
-    @Test("Copies between sources", .tags(.copying, .dictionary))
-    func copies() throws {
+    @Test(.tags(.copying, .dictionary))
+    func `Copies between sources`() throws {
 
         // GIVEN two dictionaries
         let source = FlagValueDictionary([
@@ -91,8 +91,8 @@ struct FlagValueSourceTests {
 
     }
 
-    @Test("Removes from source", .tags(.removing))
-    func removesAll() throws {
+    @Test(.tags(.removing))
+    func `Removes from source`() throws {
 
         // GIVEN a dictionary with some values
         let source = FlagValueDictionary([
@@ -148,7 +148,7 @@ private final class TestGetSource: FlagValueSource {
         self.subject = subject
     }
 
-    func flagValue<Value>(key: String) -> Value? where Value: FlagValue {
+    func flagValue<Value: FlagValue>(key: String) -> Value? {
         subject(key)
         return values[key] as? Value
     }
@@ -174,7 +174,7 @@ private final class TestSetSource: FlagValueSource {
         self.subject = subject
     }
 
-    func flagValue<Value>(key: String) -> Value? where Value: FlagValue {
+    func flagValue<Value: FlagValue>(key: String) -> Value? {
         nil
     }
 

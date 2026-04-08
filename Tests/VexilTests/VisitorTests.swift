@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -14,11 +14,10 @@
 import Testing
 import Vexil
 
-@Suite("Visitors")
 struct VisitorTests {
 
-    @Test("Visits every expected element")
-    func visitsEveryElement() {
+    @Test
+    func `Visits every expected element`() {
         let pole = FlagPole(hoist: TestFlags.self, configuration: .init(codingPathStrategy: .kebabcase, prefix: nil, separator: "."), sources: [])
         let visitor = Visitor()
         pole.walk(visitor: visitor)
@@ -43,7 +42,7 @@ struct VisitorTests {
 
                 .endGroup("subgroup"),
                 .endContainer(""),          // root
-            ]
+            ],
         )
     }
 }
@@ -111,7 +110,7 @@ private final class Visitor: FlagVisitor {
         events.append(.endGroup(keyPath.key))
     }
 
-    func visitFlag<Value>(keyPath: FlagKeyPath, value: () -> Value?, defaultValue: Value, wigwag: () -> FlagWigwag<Value>) where Value: FlagValue {
+    func visitFlag<Value: FlagValue>(keyPath: FlagKeyPath, value: () -> Value?, defaultValue: Value, wigwag: () -> FlagWigwag<Value>) {
         events.append(.visitFlag(keyPath.key))
     }
 

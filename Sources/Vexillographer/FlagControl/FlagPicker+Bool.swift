@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -14,7 +14,7 @@
 import SwiftUI
 import Vexil
 
-// Convenience for optional bool
+/// Convenience for optional bool
 public extension FlagPicker where Value.BoxedValueType == Bool?, SelectionValue == Bool?, Content == DefaultFlagPickerContent<Bool?> {
     init(configuration: FlagControlConfiguration<Value>) {
         self.init(configuration: configuration, selection: \.asOptionalBool) {

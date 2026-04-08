@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -209,7 +209,7 @@ private final class TestSource: FlagValueSource {
         self.continuation = continuation
     }
 
-    func flagValue<Value>(key: String) -> Value? where Value: FlagValue {
+    func flagValue<Value: FlagValue>(key: String) -> Value? {
         nil
     }
 

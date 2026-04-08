@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -45,7 +45,7 @@ import Foundation
 ///         so as not to conflict with the dynamic member properties on your `FlagContainer`.
 ///
 @dynamicMemberLookup
-public final class FlagPole<RootGroup>: Sendable where RootGroup: FlagContainer {
+public final class FlagPole<RootGroup: FlagContainer>: Sendable {
 
     // MARK: - Properties
 
@@ -53,7 +53,7 @@ public final class FlagPole<RootGroup>: Sendable where RootGroup: FlagContainer 
     public let _configuration: VexilConfiguration
 
     /// Primary storage
-    let manager: Lock<StreamManager>
+    package let manager: Lock<StreamManager>
 
 
     // MARK: - Sources
@@ -188,7 +188,7 @@ public final class FlagPole<RootGroup>: Sendable where RootGroup: FlagContainer 
                 self?.snapshot(including: change)
             }
             .prefix(while: { $0 != nil })               // close the stream when we get nil back
-            .compactMap { $0 }
+            .compactMap(\.self)
 
         return chain([ snapshot() ].async, snapshotStream)
     }
@@ -289,7 +289,7 @@ public final class FlagPole<RootGroup>: Sendable where RootGroup: FlagContainer 
             flagPole: self,
             copyingFlagValuesFrom: source.flatMap(Snapshot.Source.source) ?? .pole,
             change: change,
-            displayName: displayName
+            displayName: displayName,
         )
     }
 
@@ -440,12 +440,12 @@ private final class DebugDescriptionVisitor: FlagVisitor {
 
     var valueDescriptions = [String]()
 
-    func visitFlag<Value>(
+    func visitFlag<Value: FlagValue>(
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
-        wigwag: () -> FlagWigwag<Value>
-    ) where Value: FlagValue {
+        wigwag: () -> FlagWigwag<Value>,
+    ) {
         guard let value = value() else {
             valueDescriptions.append("\(keyPath.key)=nil")
             return

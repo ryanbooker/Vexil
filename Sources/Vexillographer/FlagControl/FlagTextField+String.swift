@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -14,7 +14,7 @@
 import SwiftUI
 import Vexil
 
-// TextField convenience for string
+/// TextField convenience for string
 extension FlagTextField where Value.BoxedValueType == String {
 
     init(configuration: FlagControlConfiguration<Value>) {

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -24,7 +24,7 @@ import Combine
 ///
 /// For more information on Wigwags see https://en.wikipedia.org/wiki/Wigwag_(flag_signals)
 ///
-public struct FlagGroupWigwag<Output>: Sendable where Output: FlagContainer {
+public struct FlagGroupWigwag<Output: FlagContainer>: Sendable {
 
     // MARK: - Properties
 
@@ -58,7 +58,7 @@ public struct FlagGroupWigwag<Output>: Sendable where Output: FlagContainer {
         name: String,
         description: String?,
         displayOption: FlagGroupDisplayOption?,
-        lookup: any FlagLookup
+        lookup: any FlagLookup,
     ) {
         self.keyPath = keyPath
         self.name = name
@@ -89,7 +89,7 @@ extension FlagGroupWigwag: AsyncSequence {
     private func makeAsyncSequence() -> Sequence {
         chain(
             [ getOutput() ].async,
-            changes.map { _ in getOutput() }
+            changes.map { _ in getOutput() },
         )
     }
 
@@ -110,7 +110,7 @@ extension FlagGroupWigwag: Publisher {
     public typealias Output = Output
     public typealias Failure = Never
 
-    public func receive<S>(subscriber: S) where S: Subscriber, S.Failure == Failure, S.Input == Output {
+    public func receive<S: Subscriber>(subscriber: S) where S.Failure == Failure, S.Input == Output {
         FlagPublisher(makeAsyncSequence())
             .receive(subscriber: subscriber)
     }

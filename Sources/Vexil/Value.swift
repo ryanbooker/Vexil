@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -497,7 +497,7 @@ public extension Encodable where Self: FlagValue, Self: Decodable {
     }
 }
 
-// Because we can't encode/decode a JSON fragment in Swift 5.2 on Linux we wrap it in this.
-struct Wrapper<Wrapped>: Codable where Wrapped: Codable {
+/// Because we can't encode/decode a JSON fragment in Swift 5.2 on Linux we wrap it in this.
+struct Wrapper<Wrapped: Codable>: Codable {
     var wrapped: Wrapped
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -34,6 +34,8 @@ struct DoubleAndBooleanControlStyle: FlagControlStyle {
 
 extension FlagControlStyle where Self == DoubleAndBooleanControlStyle {
 
-    static var doubleAndBoolean: Self { Self() }
+    static var doubleAndBoolean: Self {
+        Self()
+    }
 
 }

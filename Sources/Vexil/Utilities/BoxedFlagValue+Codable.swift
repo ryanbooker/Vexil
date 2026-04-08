@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -128,7 +128,7 @@ extension BoxedFlagValue: Decodable {
 
         } else {
             throw DecodingError.dataCorrupted(
-                DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unsupported type when decoding a BoxedFlagValue")
+                DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unsupported type when decoding a BoxedFlagValue"),
             )
         }
 

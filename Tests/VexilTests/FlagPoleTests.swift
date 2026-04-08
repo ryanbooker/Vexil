@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -15,14 +15,13 @@ import Foundation
 import Testing
 @testable import Vexil
 
-@Suite("Flag Pole")
 struct FlagPoleTests {
 
 
 #if !os(Linux)
 
-    @Test("Sets default sources", .tags(.pole))
-    func setsDefaultSources() throws {
+    @Test(.tags(.pole))
+    func `Sets default sources`() throws {
         let pole = FlagPole(hoist: TestFlags.self)
 
         #expect(pole._sources.count == 1)
@@ -34,8 +33,8 @@ struct FlagPoleTests {
 
 #else
 
-    @Test("Sets default sources", .tags(.pole))
-    func setsDefaultSources() throws {
+    @Test(.tags(.pole))
+    func `sets default sources`() {
         let pole = FlagPole(hoist: TestFlags.self)
         #expect(pole._sources.isEmpty)
     }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -99,12 +99,12 @@ public protocol FlagVisitor {
     ///   - wigwag:         A closure you can use to obtain the flag's WigWag. You can obtain additional information
     ///                     about the flag or subscribe to real-time flag value changes via the WigWag.
     ///
-    func visitFlag<Value>(
+    func visitFlag<Value: FlagValue>(
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
-        wigwag: () -> FlagWigwag<Value>
-    ) where Value: FlagValue
+        wigwag: () -> FlagWigwag<Value>,
+    )
 
 }
 

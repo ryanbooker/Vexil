@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -114,7 +114,7 @@ extension FlagGroupMacro: AccessorMacro {
     public static func expansion(
         of node: AttributeSyntax,
         providingAccessorsOf declaration: some DeclSyntaxProtocol,
-        in context: some MacroExpansionContext
+        in context: some MacroExpansionContext,
     ) throws -> [AccessorDeclSyntax] {
         let group = try FlagGroupMacro(node: node, declaration: declaration, context: context)
         return [
@@ -132,7 +132,7 @@ extension FlagGroupMacro: PeerMacro {
     public static func expansion(
         of node: AttributeSyntax,
         providingPeersOf declaration: some DeclSyntaxProtocol,
-        in context: some MacroExpansionContext
+        in context: some MacroExpansionContext,
     ) throws -> [DeclSyntax] {
         do {
             let macro = try FlagGroupMacro(node: node, declaration: declaration, context: context)

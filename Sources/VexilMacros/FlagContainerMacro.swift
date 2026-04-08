@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -24,7 +24,7 @@ extension FlagContainerMacro: MemberMacro {
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclGroupSyntax,
         conformingTo protocols: [TypeSyntax],
-        in context: some MacroExpansionContext
+        in context: some MacroExpansionContext,
     ) throws -> [DeclSyntax] {
         // If the declaration doesn't have any scopes attached we might be inheriting scopes from a public extension
         var scopes = declaration.modifiers.scopeSyntax
@@ -50,7 +50,7 @@ extension FlagContainerMacro: MemberMacro {
                     ExprSyntax("self._flagKeyPath = _flagKeyPath")
                     ExprSyntax("self._flagLookup = _flagLookup")
                 }
-                .with(\.modifiers, scopes)
+                .with(\.modifiers, scopes),
             ),
 
         ]
@@ -65,7 +65,7 @@ extension FlagContainerMacro: ExtensionMacro {
         attachedTo declaration: some DeclGroupSyntax,
         providingExtensionsOf type: some TypeSyntaxProtocol,
         conformingTo protocols: [TypeSyntax],
-        in context: some MacroExpansionContext
+        in context: some MacroExpansionContext,
     ) throws -> [ExtensionDeclSyntax] {
         var shouldGenerateConformance = protocols.isEmpty && ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
             ? node.shouldGenerateConformance
@@ -94,7 +94,7 @@ extension FlagContainerMacro: ExtensionMacro {
         var decls = try [
             ExtensionDeclSyntax(
                 extendedType: type,
-                inheritanceClause: .init(inheritedTypes: [ .init(type: TypeSyntax(stringLiteral: "FlagContainer")) ])
+                inheritanceClause: .init(inheritedTypes: [ .init(type: TypeSyntax(stringLiteral: "FlagContainer")) ]),
             ) {
 
                 // Flag Hierarchy Walking
@@ -127,13 +127,13 @@ extension FlagContainerMacro: ExtensionMacro {
                                             components: [
                                                 .init(
                                                     period: .periodToken(),
-                                                    component: .property(.init(declName: .init(baseName: .identifier(flag.propertyName))))
+                                                    component: .property(.init(declName: .init(baseName: .identifier(flag.propertyName)))),
                                                 ),
-                                            ]
+                                            ],
                                         ),
                                         value: flag.key,
                                         trailingComma: .commaToken(),
-                                        trailingTrivia: .newline
+                                        trailingTrivia: .newline,
                                     )
                                 }
                             }
@@ -152,7 +152,7 @@ extension FlagContainerMacro: ExtensionMacro {
             try decls += [
                 ExtensionDeclSyntax(
                     extendedType: type,
-                    inheritanceClause: .init(inheritedTypes: [ .init(type: TypeSyntax(stringLiteral: "Equatable")) ])
+                    inheritanceClause: .init(inheritedTypes: [ .init(type: TypeSyntax(stringLiteral: "Equatable")) ]),
                 ) {
                     var variables = declaration.memberBlock.storedVariables
                     try FunctionDeclSyntax("func ==(lhs: \(type), rhs: \(type)) -> Bool") {
@@ -184,7 +184,7 @@ extension FlagContainerMacro: ExtensionMacro {
             decls += [
                 ExtensionDeclSyntax(
                     extendedType: type,
-                    inheritanceClause: .init(inheritedTypes: [ .init(type: TypeSyntax(stringLiteral: "Sendable")) ])
+                    inheritanceClause: .init(inheritedTypes: [ .init(type: TypeSyntax(stringLiteral: "Sendable")) ]),
                 ) {
                     // Member block intentionally left blank
                 },

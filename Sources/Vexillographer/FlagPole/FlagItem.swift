@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -30,7 +30,9 @@ struct FlagItem<Value: FlagValue>: FlagPoleItem {
         flag.keyPath
     }
 
-    var name: String { flag.name }
+    var name: String {
+        flag.name
+    }
 
     func makeContent() -> any View {
         FlagItemContent(wigwag: flag)

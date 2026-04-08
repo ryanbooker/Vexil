@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -14,9 +14,9 @@
 import SwiftUI
 import Vexil
 
-// A text field
-// - want to dismiss on scroll?
-// - want to have confirm/cancel?
+/// A text field
+/// - want to dismiss on scroll?
+/// - want to have confirm/cancel?
 struct FlagTextField<Value: FlagValue>: View {
 
     private var name: String
@@ -41,7 +41,7 @@ struct FlagTextField<Value: FlagValue>: View {
         formatted: WritableKeyPath<Value, String>,
         placeholder: String = "",
         format: @escaping (String) -> String = { $0 },
-        editingFormat: @escaping (String) -> String = { $0 }
+        editingFormat: @escaping (String) -> String = { $0 },
     ) {
         self.name = configuration.name
         _value = configuration.$value
@@ -85,11 +85,11 @@ struct FlagTextField<Value: FlagValue>: View {
         .focused($isFocused)
     }
 
-    // Can this be computed key path?
+    /// Can this be computed key path?
     var text: Binding<String> {
         Binding(
             get: { cachedText ?? value[keyPath: formatted] },
-            set: { cachedText = $0 }
+            set: { cachedText = $0 },
         )
     }
 

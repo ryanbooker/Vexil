@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -17,7 +17,7 @@ import Combine
 
 extension FlagValueDictionary: FlagValueSource {
 
-    public func flagValue<Value>(key: String) -> Value? where Value: FlagValue {
+    public func flagValue<Value: FlagValue>(key: String) -> Value? {
         storage.withLock { storage in
             guard let value = storage[key] else {
                 return nil

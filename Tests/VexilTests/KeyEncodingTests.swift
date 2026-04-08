@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -14,11 +14,11 @@
 import Testing
 import Vexil
 
-@Suite("Key Encoding", .tags(.pole))
+@Suite(.tags(.pole))
 struct KeyEncodingTests {
 
-    @Test("Encodes with kebab-case")
-    func kebabcase() {
+    @Test
+    func `Encodes with kebab-case`() {
         let config = VexilConfiguration(codingPathStrategy: .kebabcase, prefix: nil, separator: ".")
         let pole = FlagPole(hoist: TestFlags.self, configuration: config, sources: [])
 
@@ -31,8 +31,8 @@ struct KeyEncodingTests {
         #expect(pole.oneFlagGroup.twoFlagGroup.flagGroupThree.$standard.key == "one-flag-group.two.standard")
     }
 
-    @Test("Encodes with snake_case")
-    func snakecase() {
+    @Test
+    func `Encodes with snake_case`() {
         let config = VexilConfiguration(codingPathStrategy: .snakecase, prefix: nil, separator: ".")
         let pole = FlagPole(hoist: TestFlags.self, configuration: config, sources: [])
 
@@ -45,8 +45,8 @@ struct KeyEncodingTests {
         #expect(pole.oneFlagGroup.twoFlagGroup.flagGroupThree.$standard.key == "one_flag_group.two.standard")
     }
 
-    @Test("Encodes with prefix")
-    func prefix() {
+    @Test
+    func `Encodes with prefix`() {
         let config = VexilConfiguration(codingPathStrategy: .kebabcase, prefix: "prefix", separator: ".")
         let pole = FlagPole(hoist: TestFlags.self, configuration: config, sources: [])
 
@@ -59,8 +59,8 @@ struct KeyEncodingTests {
         #expect(pole.oneFlagGroup.twoFlagGroup.flagGroupThree.$standard.key == "prefix.one-flag-group.two.standard")
     }
 
-    @Test("Encodes with custom separator")
-    func customSeparator() {
+    @Test
+    func `Encodes with custom separator`() {
         let config = VexilConfiguration(codingPathStrategy: .kebabcase, prefix: "prefix", separator: "/")
         let pole = FlagPole(hoist: TestFlags.self, configuration: config, sources: [])
 

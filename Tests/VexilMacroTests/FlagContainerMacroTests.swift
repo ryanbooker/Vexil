@@ -2,7 +2,7 @@
 //
 // This source file is part of the Vexil open source project
 //
-// Copyright (c) 2025 Unsigned Apps and the open source contributors.
+// Copyright (c) 2026 Unsigned Apps and the open source contributors.
 // Licensed under the MIT license
 //
 // See LICENSE for license information
@@ -20,7 +20,7 @@ import XCTest
 
 final class FlagContainerMacroTests: XCTestCase {
 
-    func testExpandsDefault() throws {
+    func testExpandsDefault() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -62,11 +62,11 @@ final class FlagContainerMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagContainer": FlagContainerMacro.self,
-            ]
+            ],
         )
     }
 
-    func testExpandsPublic() throws {
+    func testExpandsPublic() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -108,11 +108,11 @@ final class FlagContainerMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagContainer": FlagContainerMacro.self,
-            ]
+            ],
         )
     }
 
-    func testExpandsButAlreadyConforming() throws {
+    func testExpandsButAlreadyConforming() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -154,13 +154,13 @@ final class FlagContainerMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagContainer": FlagContainerMacro.self,
-            ]
+            ],
         )
     }
 
     // MARK: - Swift 6 specific tests
 
-    func testExpandsVisitorImplementation() throws {
+    func testExpandsVisitorImplementation() {
         assertMacroExpansion(
             """
             @FlagContainer
@@ -253,7 +253,7 @@ final class FlagContainerMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagContainer": FlagContainerMacro.self,
-            ]
+            ],
         )
     }
 
