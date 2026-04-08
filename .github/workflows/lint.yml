@@ -8,8 +8,6 @@ jobs:
   check-changes:
     name: Check for Changes
     runs-on: ubuntu-latest
-    container:
-      image: swift:6.2-jammy
     outputs:
       changed: ${{ steps.filter.outputs.changed }}
     steps:
@@ -26,6 +24,8 @@ jobs:
 
   Lint:
     runs-on: ubuntu-latest
+    container:
+      image: swift:6.2-jammy
     if: ${{ github.event_name == 'push' || needs.check-changes.outputs.changed == 'true' }}
     needs: check-changes
     steps:
