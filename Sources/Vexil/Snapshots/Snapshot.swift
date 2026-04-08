@@ -63,7 +63,7 @@ import Foundation
 /// ```
 ///
 @dynamicMemberLookup
-public final class Snapshot<RootGroup>: Sendable where RootGroup: FlagContainer {
+public final class Snapshot<RootGroup: FlagContainer>: Sendable {
 
     // MARK: - Properties
 
@@ -92,7 +92,7 @@ public final class Snapshot<RootGroup>: Sendable where RootGroup: FlagContainer 
         flagPole: FlagPole<RootGroup>,
         copyingFlagValuesFrom source: Source?,
         keys: Set<String>? = nil,
-        displayName: String? = nil
+        displayName: String? = nil,
     ) {
         self.rootKeyPath = flagPole.rootKeyPath
         self.values = .init(initialState: [:])

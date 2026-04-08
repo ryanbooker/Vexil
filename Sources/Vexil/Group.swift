@@ -52,7 +52,7 @@
 @attached(peer, names: prefixed(`$`))
 public macro FlagGroup(
     _ description: StaticString,
-    display: FlagGroupDisplayOption = .navigation
+    display: FlagGroupDisplayOption = .navigation,
 ) = #externalMacro(module: "VexilMacros", type: "FlagGroupMacro")
 
 /// Creates a FlagGroup with the given parameters.
@@ -98,7 +98,7 @@ public macro FlagGroup(
 @attached(accessor)
 @attached(peer, names: prefixed(`$`))
 public macro FlagGroup(
-    _ description: StaticString
+    _ description: StaticString,
 ) = #externalMacro(module: "VexilMacros", type: "FlagGroupMacro")
 
 @attached(accessor)
@@ -107,5 +107,5 @@ public macro FlagGroup(
     name: StaticString? = nil,
     keyStrategy: VexilConfiguration.GroupKeyStrategy = .default,
     description: StaticString,
-    display: FlagGroupDisplayOption = .navigation
+    display: FlagGroupDisplayOption = .navigation,
 ) = #externalMacro(module: "VexilMacros", type: "FlagGroupMacro")

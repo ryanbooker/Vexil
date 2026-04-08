@@ -209,7 +209,7 @@ private final class TestSource: FlagValueSource {
         self.continuation = continuation
     }
 
-    func flagValue<Value>(key: String) -> Value? where Value: FlagValue {
+    func flagValue<Value: FlagValue>(key: String) -> Value? {
         nil
     }
 

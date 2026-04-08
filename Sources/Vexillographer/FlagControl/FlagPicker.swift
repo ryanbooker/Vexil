@@ -14,7 +14,7 @@
 import SwiftUI
 import Vexil
 
-// A picker
+/// A picker
 public struct FlagPicker<Value: FlagValue, SelectionValue: Hashable, Content: View>: View {
 
     private var name: String
@@ -26,7 +26,7 @@ public struct FlagPicker<Value: FlagValue, SelectionValue: Hashable, Content: Vi
     init(
         configuration: FlagControlConfiguration<Value>,
         selection: WritableKeyPath<Value, SelectionValue>,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
     ) {
         self.name = configuration.name
         _value = configuration.$value

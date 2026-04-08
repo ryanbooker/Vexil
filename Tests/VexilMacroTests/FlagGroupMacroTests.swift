@@ -20,7 +20,7 @@ import XCTest
 
 final class FlagGroupMacroTests: XCTestCase {
 
-    func testExpands() throws {
+    func testExpands() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -50,11 +50,11 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
-    func testExpandsPublic() throws {
+    func testExpandsPublic() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -84,14 +84,14 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
 
     // MARK: - Flag Group Detail Tests
 
-    func testExpandsName() throws {
+    func testExpandsName() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -121,11 +121,11 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
-    func testHidden() throws {
+    func testHidden() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -155,11 +155,11 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
-    func testDisplayNavigation() throws {
+    func testDisplayNavigation() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -189,11 +189,11 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
-    func testDisplaySection() throws {
+    func testDisplaySection() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -223,13 +223,13 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
     // MARK: - Key Strategy Detection Tests
 
-    func testDetectsKeyStrategyMinimal() throws {
+    func testDetectsKeyStrategyMinimal() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -259,11 +259,11 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
-    func testDetectsKeyStrategyFull() throws {
+    func testDetectsKeyStrategyFull() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -293,14 +293,14 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
 
     // MARK: - Key Strategy Tests
 
-    func testKeyStrategyDefault() throws {
+    func testKeyStrategyDefault() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -330,11 +330,11 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
-    func testKeyStrategyKebabcase() throws {
+    func testKeyStrategyKebabcase() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -364,11 +364,11 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
-    func testKeyStrategySnakecase() throws {
+    func testKeyStrategySnakecase() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -398,11 +398,11 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
-    func testKeyStrategySkip() throws {
+    func testKeyStrategySkip() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -432,11 +432,11 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 
-    func testKeyStrategyCustomKey() throws {
+    func testKeyStrategyCustomKey() {
         assertMacroExpansion(
             """
             struct TestFlags {
@@ -466,7 +466,7 @@ final class FlagGroupMacroTests: XCTestCase {
             """,
             macros: [
                 "FlagGroup": FlagGroupMacro.self,
-            ]
+            ],
         )
     }
 

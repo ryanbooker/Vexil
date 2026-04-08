@@ -27,13 +27,13 @@ import Testing
 ///  from `Bool` we'd expect to see the second line of
 ///  `testBooleanFlagValue` fail to compile
 ///
-@Suite("Flag Value Compilation", .tags(.pole))
+@Suite(.tags(.pole))
 struct FlagValueCompilationTests {
 
     // MARK: - Boolean Flag Values
 
-    @Test("Compiles boolean")
-    func booleanFlagValue() {
+    @Test
+    func `Compiles boolean`() {
         let pole = FlagPole(hoist: BooleanTestFlags.self, sources: [])
         #expect(pole.flag)
     }
@@ -41,14 +41,14 @@ struct FlagValueCompilationTests {
 
     // MARK: - String Flag Values
 
-    @Test("Compiles string")
-    func stringFlagValue() {
+    @Test
+    func `Compiles string`() {
         let pole = FlagPole(hoist: StringTestFlags.self, sources: [])
         #expect(pole.flag == "Test")
     }
 
-    @Test("Compiles URL")
-    func urlFlagValue() {
+    @Test
+    func `Compiles URL`() {
         let pole = FlagPole(hoist: URLTestFlags.self, sources: [])
         #expect(pole.flag == URL(string: "https://google.com/")!)
     }
@@ -56,14 +56,14 @@ struct FlagValueCompilationTests {
 
     // MARK: - Data and Date Flag Values
 
-    @Test("Compiles data")
-    func dataFlagValue() {
+    @Test
+    func `Compiles data`() {
         let pole = FlagPole(hoist: DataTestFlags.self, sources: [])
         #expect(pole.flag == Data("hello".utf8))
     }
 
-    @Test("Compiles date", .tags(.source))
-    func dateFlagValue() {
+    @Test(.tags(.source))
+    func `Compiles date`() {
         // We need to use a source here to ensure that the expected value is *exactly* what it was
         let source = TestSource()
         let pole = FlagPole(hoist: DateTestFlags.self, sources: [ source ])
@@ -73,7 +73,7 @@ struct FlagValueCompilationTests {
             let flagValueSourceID = UUID().uuidString
             let flagValueSourceName: String = "Test"
             let value = Date.now
-            func flagValue<Value>(key: String) -> Value? where Value: FlagValue {
+            func flagValue<Value: FlagValue>(key: String) -> Value? {
                 value as? Value
             }
 
@@ -90,62 +90,62 @@ struct FlagValueCompilationTests {
 
     // MARK: - Integer Flag Values
 
-    @Test("Compiles integer")
-    func intFlagValue() {
+    @Test
+    func `Compiles integer`() {
         let pole = FlagPole(hoist: IntTestFlags<Int>.self, sources: [])
         #expect(pole.flag == 123)
     }
 
-    @Test("Compiles 8-bit integer")
-    func int8FlagValue() {
+    @Test
+    func `Compiles 8-bit integer`() {
         let pole = FlagPole(hoist: IntTestFlags<Int8>.self, sources: [])
         #expect(pole.flag == 123)
     }
 
-    @Test("Compiles 16-bit integer")
-    func int16FlagValue() {
+    @Test
+    func `Compiles 16-bit integer`() {
         let pole = FlagPole(hoist: IntTestFlags<Int16>.self, sources: [])
         #expect(pole.flag == 123)
     }
 
-    @Test("Compiles 32-bit integer")
-    func int32FlagValue() {
+    @Test
+    func `Compiles 32-bit integer`() {
         let pole = FlagPole(hoist: IntTestFlags<Int32>.self, sources: [])
         #expect(pole.flag == 123)
     }
 
-    @Test("Compiles 64-bit integer")
-    func int64FlagValue() {
+    @Test
+    func `Compiles 64-bit integer`() {
         let pole = FlagPole(hoist: IntTestFlags<Int64>.self, sources: [])
         #expect(pole.flag == 123)
     }
 
-    @Test("Compiles unsigned integer")
-    func uIntFlagValue() {
+    @Test
+    func `Compiles unsigned integer`() {
         let pole = FlagPole(hoist: IntTestFlags<UInt>.self, sources: [])
         #expect(pole.flag == 123)
     }
 
-    @Test("Compiles 8-bit unsigned integer")
-    func uint8FlagValue() {
+    @Test
+    func `Compiles 8-bit unsigned integer`() {
         let pole = FlagPole(hoist: IntTestFlags<UInt8>.self, sources: [])
         #expect(pole.flag == 123)
     }
 
-    @Test("Compiles 16-bit unsigned integer")
-    func uint16FlagValue() {
+    @Test
+    func `Compiles 16-bit unsigned integer`() {
         let pole = FlagPole(hoist: IntTestFlags<UInt16>.self, sources: [])
         #expect(pole.flag == 123)
     }
 
-    @Test("Compiles 32-bit unsigned integer")
-    func uint32FlagValue() {
+    @Test
+    func `Compiles 32-bit unsigned integer`() {
         let pole = FlagPole(hoist: IntTestFlags<UInt32>.self, sources: [])
         #expect(pole.flag == 123)
     }
 
-    @Test("Compiles 64-bit unsigned integer")
-    func uint64FlagValue() {
+    @Test
+    func `Compiles 64-bit unsigned integer`() {
         let pole = FlagPole(hoist: IntTestFlags<UInt64>.self, sources: [])
         #expect(pole.flag == 123)
     }
@@ -153,14 +153,14 @@ struct FlagValueCompilationTests {
 
     // MARK: - Floating Point Flag Values
 
-    @Test("Compiles float")
-    func floatFlagValue() {
+    @Test
+    func `Compiles float`() {
         let pole = FlagPole(hoist: FloatTestFlags<Float>.self, sources: [])
         #expect(pole.flag == 123.23)
     }
 
-    @Test("Compiles double")
-    func doubleFlagValue() {
+    @Test
+    func `Compiles double`() {
         let pole = FlagPole(hoist: FloatTestFlags<Double>.self, sources: [])
         #expect(pole.flag == 123.23)
     }
@@ -168,20 +168,20 @@ struct FlagValueCompilationTests {
 
     // MARK: - Wrapping Types
 
-    @Test("Compiles raw representable")
-    func rawRepresentableFlagValue() {
+    @Test
+    func `Compiles raw representable`() {
         let pole = FlagPole(hoist: RawRepresentableTestFlags.self, sources: [])
         #expect(pole.flag == RawRepresentableTestStruct(rawValue: "Test"))
     }
 
-    @Test("Compiles optional")
-    func optionalFlagValue() {
+    @Test
+    func `Compiles optional`() {
         let pole = FlagPole(hoist: OptionalValueTestFlags.self, sources: [])
         #expect(pole.flag == "Test")
     }
 
-    @Test("Compiles nil")
-    func optionalNoFlagValue() {
+    @Test
+    func `Compiles nil`() {
         let pole = FlagPole(hoist: OptionalNoValueTestFlags.self, sources: [])
         #expect(pole.flag == nil)
     }
@@ -189,14 +189,14 @@ struct FlagValueCompilationTests {
 
     // MARK: - Collection Types
 
-    @Test("Compiles array")
-    func arrayFlagValue() {
+    @Test
+    func `Compiles array`() {
         let pole = FlagPole(hoist: ArrayTestFlags.self, sources: [])
         #expect(pole.flag == [ 123, 456, 789 ])
     }
 
-    @Test("Compiles dictionary")
-    func dictionaryFlagValue() {
+    @Test
+    func `Compiles dictionary`() {
         let pole = FlagPole(hoist: DictionaryTestFlags.self, sources: [])
         #expect(pole.flag == [ "First": 123, "Second": 456, "Third": 789 ])
     }
@@ -204,8 +204,8 @@ struct FlagValueCompilationTests {
 
     // MARK: - Codable Types
 
-    @Test("Compiles codable")
-    func codableFlagValue() {
+    @Test
+    func `Compiles codable`() {
         let pole = FlagPole(hoist: CodableTestFlags.self, sources: [])
         #expect(pole.flag == CodableTestStruct())
     }
@@ -249,13 +249,13 @@ private struct DataTestFlags {
 }
 
 @FlagContainer(generateEquatable: false)
-private struct IntTestFlags<Value> where Value: FlagValue & ExpressibleByIntegerLiteral {
+private struct IntTestFlags<Value: FlagValue & ExpressibleByIntegerLiteral> {
     @Flag("Test flag")
     var flag: Value = 123
 }
 
 @FlagContainer(generateEquatable: false)
-private struct FloatTestFlags<Value> where Value: FlagValue & ExpressibleByFloatLiteral {
+private struct FloatTestFlags<Value: FlagValue & ExpressibleByFloatLiteral> {
     @Flag("Test flag")
     var flag: Value = 123.23
 }

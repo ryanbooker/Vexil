@@ -17,7 +17,7 @@ extension Snapshot: FlagValueSource {
         displayName ?? "Snapshot \(id)"
     }
 
-    public func flagValue<Value>(key: String) -> Value? where Value: FlagValue {
+    public func flagValue<Value: FlagValue>(key: String) -> Value? {
         values.withLock {
             $0[key] as? Value
         }

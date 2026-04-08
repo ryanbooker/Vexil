@@ -14,9 +14,9 @@
 import SwiftUI
 import Vexil
 
-// Sheet with flag info
-// - can reset value
-// - can see source hierarchy
+/// Sheet with flag info
+/// - can reset value
+/// - can see source hierarchy
 struct FlagDetailView<Value: FlagValue>: View {
 
     var configuration: FlagControlConfiguration<Value>

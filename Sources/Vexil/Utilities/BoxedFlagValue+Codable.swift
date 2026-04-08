@@ -128,7 +128,7 @@ extension BoxedFlagValue: Decodable {
 
         } else {
             throw DecodingError.dataCorrupted(
-                DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unsupported type when decoding a BoxedFlagValue")
+                DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unsupported type when decoding a BoxedFlagValue"),
             )
         }
 

@@ -22,12 +22,12 @@ final class FlagSetter: FlagVisitor {
         self.keys = keys
     }
 
-    func visitFlag<Value>(
+    func visitFlag<Value: FlagValue>(
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
-        wigwag: () -> FlagWigwag<Value>
-    ) where Value: FlagValue {
+        wigwag: () -> FlagWigwag<Value>,
+    ) {
         let key = keyPath.key
         guard keys.contains(key), caughtError == nil, let value = value() else {
             return

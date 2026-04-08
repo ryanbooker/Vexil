@@ -18,7 +18,7 @@ public extension View {
 
     func flagPole(
         _ flagPole: FlagPole<some FlagContainer>,
-        editableSource: (any FlagValueSource)? = nil
+        editableSource: (any FlagValueSource)? = nil,
     ) -> some View {
         modifier(FlagPoleModifier(flagPole: flagPole, editableSource: editableSource))
     }

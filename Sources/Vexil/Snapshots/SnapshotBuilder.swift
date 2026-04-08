@@ -57,7 +57,7 @@ extension Snapshot {
 extension Snapshot.Builder: FlagLookup {
 
     /// Provides lookup capabilities to the flag hierarchy for our visit.
-    func value<Value>(for keyPath: FlagKeyPath) -> Value? where Value: FlagValue {
+    func value<Value: FlagValue>(for keyPath: FlagKeyPath) -> Value? {
         state.withLock { state in
             if let flagPole {
                 flagPole.value(for: keyPath)
@@ -71,8 +71,8 @@ extension Snapshot.Builder: FlagLookup {
         }
     }
 
-    // Not used while walking the flag hierarchy
-    func value<Value>(for keyPath: FlagKeyPath, in source: any FlagValueSource) -> Value? where Value: FlagValue {
+    /// Not used while walking the flag hierarchy
+    func value<Value: FlagValue>(for keyPath: FlagKeyPath, in source: any FlagValueSource) -> Value? {
         nil
     }
 
@@ -87,12 +87,12 @@ extension Snapshot.Builder: FlagLookup {
 
 extension Snapshot.Builder: FlagVisitor {
 
-    func visitFlag<Value>(
+    func visitFlag<Value: FlagValue>(
         keyPath: FlagKeyPath,
         value: () -> Value?,
         defaultValue: Value,
-        wigwag: () -> FlagWigwag<Value>
-    ) where Value: FlagValue {
+        wigwag: () -> FlagWigwag<Value>,
+    ) {
         let key = keyPath.key
         guard keys == nil || keys?.contains(key) == true, let value = value() else {
             return

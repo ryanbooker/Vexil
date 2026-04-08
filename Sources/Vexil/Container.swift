@@ -21,7 +21,7 @@
     names: named(_flagKeyPath), named(_flagLookup), named(init(_flagKeyPath:_flagLookup:))
 )
 public macro FlagContainer(
-    generateEquatable: any ExpressibleByBooleanLiteral = true
+    generateEquatable: any ExpressibleByBooleanLiteral = true,
 ) = #externalMacro(module: "VexilMacros", type: "FlagContainerMacro")
 
 public protocol FlagContainer: Sendable {

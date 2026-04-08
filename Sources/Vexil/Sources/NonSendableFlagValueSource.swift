@@ -45,7 +45,7 @@ public protocol NonSendableFlagValueSource {
     var flagValueSourceName: String { get }
 
     /// Provide a way to fetch values. The ``BoxedFlagValue`` type is there to help with boxing and unboxing of flag values.
-    func flagValue<Value>(key: String) -> Value? where Value: FlagValue
+    func flagValue<Value: FlagValue>(key: String) -> Value?
 
     /// And to save values – if your source does not support saving just do nothing. The ``BoxedFlagValue`` type is there to
     /// help with boxing and unboxing of flag values.

@@ -14,8 +14,8 @@
 import SwiftUI
 import Vexil
 
-// Binding to a flag value could be a property wrapper but maybe best
-// not to blur the lines
+/// Binding to a flag value could be a property wrapper but maybe best
+/// not to blur the lines
 public struct FlagControlConfiguration<Value: FlagValue> {
 
     private let seed: Int
@@ -38,7 +38,7 @@ public struct FlagControlConfiguration<Value: FlagValue> {
         hasValue: Bool,
         defaultValue: Value,
         value: Binding<Value>,
-        resetValue: @escaping () -> Void
+        resetValue: @escaping () -> Void,
     ) {
         self.seed = seed
         self.name = name

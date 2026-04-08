@@ -18,19 +18,19 @@ import Combine
 import Testing
 @testable import Vexil
 
-@Suite("Equatable Tests", .tags(.pole))
+@Suite(.tags(.pole))
 struct EquatableTests {
 
     // MARK: - Tests
 
-    @Test("Subsequent snapshots are equal", .tags(.snapshot))
-    func snapshotEqual() {
+    @Test(.tags(.snapshot))
+    func `Subsequent snapshots are equal`() {
         let pole = FlagPole(hoist: DoubleSubgroupFlags.self, sources: [])
         #expect(pole.emptySnapshot() == pole.emptySnapshot())
     }
 
-    @Test("Snapshots with different contents are not equal", .tags(.snapshot))
-    func snapshotNotEqual() {
+    @Test(.tags(.snapshot))
+    func `Snapshots with different contents are not equal`() {
         let pole = FlagPole(hoist: DoubleSubgroupFlags.self, sources: [])
         let first = pole.emptySnapshot()
         let second = pole.emptySnapshot()
@@ -38,14 +38,14 @@ struct EquatableTests {
         #expect(first != second)
     }
 
-    @Test("Computed flag groups are equal")
-    func groupEquality() {
+    @Test
+    func `Computed flag groups are equal`() {
         let pole = FlagPole(hoist: TestFlags.self, sources: [])
         #expect(pole.subgroup == pole.subgroup)
     }
 
-    @Test("Computed flags are equal")
-    func flagEquality() {
+    @Test
+    func `Computed flags are equal`() {
         let pole = FlagPole(hoist: TestFlags.self, sources: [])
         #expect(pole.topLevelFlag == pole.topLevelFlag)
     }
@@ -181,7 +181,7 @@ private struct DoubleSubgroupFlags {
 
 }
 
-// Support for empty Flag Containers
+/// Support for empty Flag Containers
 @FlagContainer
 private struct EmptyFlags {
     // Intentionally left blank

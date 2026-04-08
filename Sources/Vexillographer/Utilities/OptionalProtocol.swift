@@ -11,7 +11,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-// Is this still needed
+/// Is this still needed
 protocol OptionalProtocol {
     associatedtype Wrapped
     var wrapped: Wrapped? { get set }

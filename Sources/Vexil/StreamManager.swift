@@ -86,7 +86,7 @@ extension FlagPole {
             didChange = true
             for insertion in difference.insertions {
                 manager.tasks.append(
-                    (insertion.element.flagValueSourceID, makeSubscribeTask(for: insertion.element))
+                    (insertion.element.flagValueSourceID, makeSubscribeTask(for: insertion.element)),
                 )
             }
         }

@@ -14,7 +14,7 @@
 import SwiftUI
 import Vexil
 
-// TextField convenience for string
+/// TextField convenience for string
 extension FlagTextField where Value.BoxedValueType == String {
 
     init(configuration: FlagControlConfiguration<Value>) {
