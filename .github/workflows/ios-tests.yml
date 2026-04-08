@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: [ "26.1" ]
+        xcode: [ "26.2", "26.3", "26.4" ]
         os: [ macos-26 ]
     runs-on: ${{ matrix.os }}
 
@@ -42,7 +42,7 @@ jobs:
         run: |
           set -o pipefail && \
           NSUnbufferedIO=YES \
-          xcrun xcodebuild build -workspace . -scheme Vexil -skipMacroValidation -destination "platform=iOS Simulator,name=iPhone 16e" \
+          xcrun xcodebuild build -workspace . -scheme Vexil -skipMacroValidation -destination "platform=iOS Simulator,name=iPhone 17" \
           | xcbeautify --renderer github-actions
 
   build-ios:
