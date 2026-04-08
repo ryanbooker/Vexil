@@ -31,4 +31,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: "🧹 Lint changed files"
-        run: make lint
+        run: swift package plugin --allow-writing-to-package-directory swiftformat . --lint
