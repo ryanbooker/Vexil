@@ -19,16 +19,7 @@ struct AsyncCurrentValue<Wrapped: Sendable> {
         // iterators start with generation = 0, so our initial value
         // has generation 1, so even that will be delivered.
         var generation = 1
-        var wrappedValue: Wrapped {
-            didSet {
-                generation += 1
-                for (_, continuation) in pendingContinuations {
-                    continuation.resume(returning: (generation, wrappedValue))
-                }
-                pendingContinuations = []
-            }
-        }
-
+        var wrappedValue: Wrapped
         var pendingContinuations = [(UUID, CheckedContinuation<(Int, Wrapped)?, Never>)]()
     }
 
@@ -68,18 +59,39 @@ struct AsyncCurrentValue<Wrapped: Sendable> {
     ///   - body:               A closure that passes the current value as an in-out parameter that you can mutate.
     ///                         When the closure returns the mutated value is saved as the current value and is sent to all subscribers.
     ///
-    func update<R: Sendable>(_ body: (inout sending Wrapped) throws -> R) rethrows -> R {
-        try allocation.mutex.withLock { state in
+    func update<R: Sendable, E: Error>(_ body: (inout sending Wrapped) throws(E) -> R) throws(E) -> R {
+        let result: Result<R, E>
+        let generation: Int
+        let pendingContinuations: [CheckedContinuation<(Int, Wrapped)?, Never>]
+        let updatedValue: Wrapped
+
+        // If we resume continuations within the context of this lock we risk a deadlock
+        // as they attempt to access the next value. So we do the update and return
+        // pending continuations to be resumed outside the lock. It should be impossible
+        // for new continuations to miss this generation as they're accessed and added
+        // within the same lock closure.
+
+        (result, updatedValue, generation, pendingContinuations) = allocation.mutex.withLock { state in
+
+            // The closure mutates a copy, then we save that back to our state
             var wrappedValue = state.wrappedValue
-            do {
-                let result = try body(&wrappedValue)
-                state.wrappedValue = wrappedValue
-                return result
-            } catch {
-                state.wrappedValue = wrappedValue
-                throw error
+            let result = Result { () throws(E) -> R in
+                try body(&wrappedValue)
             }
+            state.wrappedValue = wrappedValue
+
+            // Bump generation and grab pending continuations
+            state.generation += 1
+            let toResume = state.pendingContinuations.map(\.1)
+            state.pendingContinuations = []
+            return (result, wrappedValue, state.generation, toResume)
         }
+
+        // Resume our pending continuations
+        for continuation in pendingContinuations {
+            continuation.resume(returning: (generation, updatedValue))
+        }
+        return try result.get()
     }
 
 }
