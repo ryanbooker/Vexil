@@ -60,8 +60,8 @@ final class FlagContainerMacroTests: XCTestCase {
             extension TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
             ],
         )
     }
@@ -106,8 +106,8 @@ final class FlagContainerMacroTests: XCTestCase {
             extension TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
             ],
         )
     }
@@ -152,8 +152,8 @@ final class FlagContainerMacroTests: XCTestCase {
             extension TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
             ],
         )
     }
@@ -251,8 +251,8 @@ final class FlagContainerMacroTests: XCTestCase {
             extension TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
             ],
         )
     }

@@ -90,6 +90,8 @@ package.targets.append(
         name: "VexilMacroTests",
         dependencies: [
             .target(name: "VexilMacros"),
+            .product(name: "SwiftSyntax", package: "swift-syntax"),
+            .product(name: "SwiftSyntaxMacroExpansion", package: "swift-syntax"),
             .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
         ],
     ),

@@ -60,8 +60,8 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
             extension TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
             ],
         )
     }
@@ -163,9 +163,9 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
             extension TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
-                "Flag": FlagMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
+                "Flag": .flag,
             ],
         )
     }
@@ -241,9 +241,9 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
             extension TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
-                "Flag": FlagMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
+                "Flag": .flag,
             ],
         )
     }
@@ -322,9 +322,9 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
             extension SomeContainer.TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
-                "Flag": FlagMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
+                "Flag": .flag,
             ],
         )
     }
@@ -399,9 +399,9 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
             extension TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
-                "Flag": FlagMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
+                "Flag": .flag,
             ],
         )
     }
@@ -497,8 +497,8 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
             extension TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
             ],
         )
     }
@@ -594,8 +594,8 @@ final class EquatableFlagContainerMacroTests: XCTestCase {
             extension TestFlags: Sendable {
             }
             """,
-            macros: [
-                "FlagContainer": FlagContainerMacro.self,
+            macroSpecs: [
+                "FlagContainer": .flagContainer,
             ],
         )
     }
