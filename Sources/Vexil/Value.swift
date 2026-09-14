@@ -48,16 +48,18 @@ public protocol FlagValue: Sendable {
 
 /// A convenience protocol used by flag editors like Vexillographer.
 ///
-/// Use this with your `CaseIterable` types when you want to customise
-/// the value displayed in the UI.
+/// Conform your type to this when you want to customise how the editor writes
+/// its value — a `CaseIterable` enum whose case names read poorly in a `Picker`
+/// is the usual reason.
 ///
-/// - Note: This is only used by types that are edited with a `Picker` (eg. those
-/// that are `CaseIterable`. It is not used by types that are edited
-/// with a `TextField` or `Toggle`.
+/// - Note: Vexillographer draws every value it displays this way: the options
+/// in a `Picker`, the row showing the selection, and the values a flag's detail
+/// sheet lists per source. A value edited with a `TextField` or a `Toggle` is
+/// its own display string, so this does not reach those.
 ///
 public protocol FlagDisplayValue {
 
-    /// The value to display in the `Picker` for a given flag value
+    /// The string a flag editor displays for a given flag value
     var flagDisplayValue: String { get }
 }
 

@@ -26,7 +26,7 @@ struct RowContent<Content: View>: View {
 
     init(_ label: String, value: some Any) where Content == Text {
         self.label = label
-        self.content = Text(String(describing: value))
+        self.content = Text(String(flagDisplaying: value))
     }
 
     var body: some View {

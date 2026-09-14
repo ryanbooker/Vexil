@@ -74,14 +74,14 @@ public struct DefaultFlagPickerContent<SelectionValue: Hashable>: View {
         ForEach(options, id: \.self) { option in
             if let optional = option as? any OptionalProtocol {
                 if let wrapped = optional.wrapped {
-                    Text(String(describing: wrapped))
+                    Text(String(flagDisplaying: wrapped))
                 } else {
                     Section {
                         Text("None")
                     }
                 }
             } else {
-                Text(String(describing: option))
+                Text(String(flagDisplaying: option))
             }
         }
     }

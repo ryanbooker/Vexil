@@ -97,12 +97,12 @@ struct FlagValueRow<Value>: View {
             if let value {
                 if let value = value as? any OptionalProtocol {
                     if let wrapped = value.wrapped {
-                        Text(String(describing: wrapped))
+                        Text(String(flagDisplaying: wrapped))
                     } else {
                         Text("nil")
                     }
                 } else {
-                    Text(String(describing: value))
+                    Text(String(flagDisplaying: value))
                 }
             } else {
                 Text("not set")
